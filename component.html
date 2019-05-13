@@ -1,0 +1,109 @@
+---
+layout: default
+title: Assistive Robotics Toolkit | Component
+sections:
+    refer_link: |
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="css/lightcase.css">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/fontawesome-all.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+    page_action: |
+        <!-- js -->
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <script src="js/lightcase.js"></script>
+        <script src="js/jquery.events.touch.js"></script>
+
+        <script>
+            $('.showcase').lightcase();
+        </script>
+
+        <!-- //js -->
+        <script src="js/bootstrap.js"></script>
+        <!--/ start-smoth-scrolling -->
+        <script src="js/move-top.js"></script>
+        <script src="js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event) {
+                    event.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 900);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                /*
+                                        var defaults = {
+                                              containerID: 'toTop', // fading element id
+                                            containerHoverID: 'toTopHover', // fading element hover id
+                                            scrollSpeed: 1200,
+                                            easingType: 'linear' 
+                                         };
+                                        */
+
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
+
+            });
+        </script>
+        <!--// end-smoth-scrolling -->
+---
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Components</li>
+    </ol>
+    <!---->
+    <!--banner-bottom-w3layouts-->
+    <section class="banner-bottom-w3layouts py-md-5 py-4">
+        <div class="container">
+            <div class="inner-sec-w3ls py-md-5 py-4">
+                <h3 class="tittle-wthree text-center mb-lg-5 mb-3">
+                    <span>Our</span>Components</h3>
+
+                <div class="gallery-lightbox mt-5">
+                    <div class="row">
+                        <div class="col-md-6 project-img">
+                            <a href="images/g1.jpg" id="example2" class="showcase img-fluid" data-rel="lightcase:myCollection:slideshow" title="Cayton Heath">
+							<img src="images/g1.jpg" class="img-fluid" alt="">
+							</a>
+							<p>An actuator is a component of a machine that is responsible for moving or controlling a mechanism or system. An actuator requires a control signal and a source of energy.</p>
+                        </div>
+                        <div class="col-md-6 project-img">
+                            <a href="images/g3.jpg" id="example3" class="showcase img-fluid" data-rel="lightcase:myCollection:slideshow" title="Scott Webb">
+							<img src="images/g3.jpg" class="img-fluid" alt="">
+							</a>
+							<p>A sensor is a device that detects and responds to some type of input from the physical environment. The specific input could be light, heat, motion, moisture, pressure, or any one of a great number of other factors.</p>
+                        </div>
+                    </div>
+                    <br>
+					<br>
+                    <div class="row">
+                        <div class="col-md-6 project-img">
+                            <a href="images/g3.jpg" id="example4" class="showcase img-fluid" data-rel="lightcase:myCollection:slideshow" title="Roberto Nickson">
+							<img src="images/g3.jpg" class="img-fluid" alt="">
+							</a>
+							<p>Controls are the devices or mechanisms installed or instituted to guide or regulate the activities or operation of an apparatus, machine, or system.</p>
+                        </div>
+                        <div class="col-md-6 project-img">
+                            <a href="images/g4.jpg" id="example2" class="showcase img-fluid" data-rel="lightcase:myCollection:slideshow" title="Cayton Heath">
+							<img src="images/g4.jpg" class="img-fluid" alt="">
+							</a>
+							<p>Modeling and manufacturing are tools used for the fabrication and characterization of soft components using software and novel approaches to the molding process.</p>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//banner-bottom-w3layouts-->

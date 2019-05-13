@@ -1,0 +1,89 @@
+{
+  
+
+    "projects-2019-05-10-test-the-blog222": {
+      "title": "Test the Blog 5.12",
+      "content"	 : "Table of Contents  Table of Contents  Basic Functionality          Headers        Header 1Basic FunctionalityHeadersHeader 1The control board is designed to be reconfigurable to suit the requirements of your application. Depending on your application, you may need to modify the control board. This may simply involve simply rerouting tubing to change the airflow, or may require you to add new components. This page contains some examples of how others have modified the board for use in their projects.The control board is designed to be reconfigurable to suit the requirements of your application. Depending on your application, you may need to modify the control board. This may simply involve simply rerouting tubing to change the airflow, or may require you to add new components. This page contains some examples of how others have modified the board for use in their projects.The control board is designed to be reconfigurable to suit the requirements of your application. Depending on your application, you may need to modify the control board. This may simply involve simply rerouting tubing to change the airflow, or may require you to add new components. This page contains some examples of how others have modified the board for use in their projects.The control board is designed to be reconfigurable to suit the requirements of your application. Depending on your application, you may need to modify the control board. This may simply involve simply rerouting tubing to change the airflow, or may require you to add new components. This page contains some examples of how others have modified the board for use in their projects.",
+      "url": "/projects/2019/05/10/test-the-blog222",
+      "author": "Shenxiu Wu",
+      "categories": "lab-projects"
+    }
+    ,
+  
+
+    "projects-2019-05-08-test-the-blog": {
+      "title": "New Post",
+      "content"	 : "Table of Contents  Table of Contents  Basic Functionality          Headers        Header 1Basic FunctionalityHeadersHeader 1The control board is designed to be reconfigurable to suit the requirements of your application. Depending on your application, you may need to modify the control board. This may simply involve simply rerouting tubing to change the airflow, or may require you to add new components. This page contains some examples of how others have modified the board for use in their projects.",
+      "url": "/projects/2019/05/08/test-the-blog",
+      "author": "Shenxiu Wu",
+      "categories": "lab-projects"
+    }
+    ,
+  
+
+    "projects-2016-05-19-new-post": {
+      "title": "New Post",
+      "content"	 : "Table of Contents  Table of Contents  Basic Functionality          Headers        Header 1          Header 2                  Header 3                    Styling      Lists      Links      Images      Code      MathJax      Tables      Quotes      Rule      HTML        Advanced Functionality          Color and Alignment        Some Advanced Features          Data Projector      STL      Basic FunctionalityHeadersHeader 1Header 2Header 3StylingBoldItalicsBold and ItalicsLists      Item 1        Item 2        Unordered Item                  Sub Item 1                  Bold Sub Sub Ordered Item                    LinksIn-LineI’m a reference-style link 1I’m a reference-style link 1ImagesHold your pointer clicked over the image to expand the view.CodeInline code.import numpy as npdef hello_world():    print(&#39;Hello World!&#39;&#39;)MathJaxUse MathJax for Math.Tables            Here      is      a      row!                  is      Left      Center      Right              a      cut      it      A              column      short      B      C      Quotes  War does not decide who is right, only who is left.RuleHTMLCan write the whole post or sections in HTML for very specific needs. [For the advanced user or the code savvy.]Advanced FunctionalityHead over to the documentation page for tutorials on some basic html formatting and some extensions you can use for cool stuff like interactive 3D visualizations.Color and AlignmentThis text is centered.This is a red text with blue and green inline text.Some Advanced FeaturesData ProjectorSTL",
+      "url": "/projects/2016/05/19/New-Post",
+      "author": "Ahmet Cecen",
+      "categories": "lab-projects"
+    }
+    ,
+  
+
+    "projects-2016-05-02-new-presentation": {
+      "title": "New Presentation",
+      "content"	 : "      New Presentation        Ahmet Cecen    12 00 AM ,Mon, May 02 2016            F11 to Fullscreen!    Showcasing Presentation Features. This template is ideal for very quickly creating decent presentations when content and simplicity is more important than excessive styling.        Seperate with {{ page.horizontal }} between content for horizontal slides.        Seperate with {{ page.vertical }} between content for vertical slides.        Press ESC for a zoomed out overview of the presentation.        Press B to pause the presentation.        Header 1    Header 2    Header 3        Styling    Bold    Italics    Bold and Italics        Use MathJax for Math.            Lists                  Item 1                    Item 2                    Item                  Links    In-Line    I’m a reference-style link 1    I’m a reference-style link 1        Images    Alt-Click to zoom.            Code    Inline code.        Code Block    import numpy as npdef _set_colors():HighRGB = np.array([26, 152, 80]) / 255.            Quotes          War does not decide who is right, only who is left.            HTML    Now, you CAN write in HTML using this template. If you want to create HTML presentations using this framework head over to reveal.js for reference.  For a power-point like interactive tool for creating presentations with this theme, check slides.com.        Some HTML Functionality    Color and Alignment    This text is centered.    This is a red text with blue and green inline text.        STL            Data Projector                Print    Back  ",
+      "url": "/projects/2016/05/02/New-Presentation",
+      "author": "Ahmet Cecen",
+      "categories": "student-projects"
+    }
+    ,
+  
+
+    "projects-2014-04-30-hank-quinlan-site-launched": {
+      "title": "Hank Quinlan, Horrible Cop, Launches Site",
+      "content"	 : "Well. Finally got around to putting this old website together. Neat thing about it - powered by Jekyll and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.",
+      "url": "/projects/2014/04/30/hank-quinlan-site-launched",
+      "author": "Shenxiu Wu",
+      "categories": "lab-projects"
+    }
+    
+  
+
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+}

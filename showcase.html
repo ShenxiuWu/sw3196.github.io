@@ -1,0 +1,273 @@
+---
+layout: default
+title: Assistive Robotics Toolkit | Showcase
+sections:
+    refer_link: |
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="css/examples.css" rel="stylesheet" type="text/css">
+        <link href="css/slider-pro.css" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+        <link rel="stylesheet" href="css/owl.theme.css" type="text/css" media="all">
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/fontawesome-all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+    page_action: |
+        <!-- js -->
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <!--slider-->
+        <script src="js/jquery.sliderPro.min.js"></script>
+        <script>
+            $(document).ready(function($) {
+                $('#example1').sliderPro({
+                    width: 1980,
+                    height: 800,
+                    arrows: true,
+                    buttons: false,
+                    waitForLayers: true,
+                    thumbnailWidth: 270,
+                    thumbnailHeight: 100,
+                    thumbnailPointer: true,
+                    autoplay: false,
+                    autoScaleLayers: false,
+                    breakpoints: {
+                        500: {
+                            thumbnailWidth: 120,
+                            thumbnailHeight: 50
+                        }
+                    }
+                });
+            });
+        </script>
+        <!--//slider-->
+        <!-- stats -->
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.countup.js"></script>
+        <script>
+            $('.counter').countUp();
+        </script>
+        <!-- //stats -->
+
+        <!-- carousel -->
+        <script src="js/owl.carousel.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    responsiveClass: true,
+                    responsive: {
+                        0: {
+                            items: 1,
+                            nav: true
+                        },
+                        600: {
+                            items: 2,
+                            nav: false
+                        },
+                        900: {
+                            items: 3,
+                            nav: false
+                        },
+                        1000: {
+                            items: 4,
+                            nav: true,
+                            loop: false,
+                            margin: 20
+                        }
+                    }
+                })
+            })
+        </script>
+        <!-- //carousel -->
+        <!-- //js -->
+        <script src="js/bootstrap.js"></script>
+        <!--/ start-smoth-scrolling -->
+        <script src="js/move-top.js"></script>
+        <script src="js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event) {
+                    event.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 900);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                /*
+                                        var defaults = {
+                                              containerID: 'toTop', // fading element id
+                                            containerHoverID: 'toTopHover', // fading element hover id
+                                            scrollSpeed: 1200,
+                                            easingType: 'linear' 
+                                         };
+                                        */
+
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
+
+            });
+        </script>
+        <!--// end-smoth-scrolling -->
+---
+
+    <!---->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Showcase</li>
+    </ol>
+
+    <!---->
+    <!--banner-bottom-w3layouts-->
+    <section class="banner-bottom-w3layouts py-md-5 py-4">
+        <div class="container">
+            <div class="inner-sec-w3ls py-md-5 py-4">
+                <h3 class="tittle-wthree text-center mb-lg-5 mb-3">
+                    <span>Our</span><a href="{{site.baseurl}}/projects/" style="color:#ff4e00; text-decoration:none">Showcase</a></h3>
+                <p class="col-md-auto s-info text-justify">Showcase features many of the devices and components that are submitted to the site through the Soft Robotic Design Competition. Students in the undergraduate and high school category, build, document, design and test their devices in order to publish their work to the Toolkit platform. Showcase features many of the devices and components that are submitted to the site through the Soft Robotic Design Competition. Students in the undergraduate and high school category, build, document, design and test their devices in order to publish their work to the Toolkit platform.</p>
+                <br>
+                <br>
+                <br>
+                <h3 class="tittle-wthree text-center mb-lg-5 mb-3">
+                    <span>Our</span><a href="./second-level/lab-projects.html" style="color:#ff4e00; text-decoration:none">Lab Projects</a></h3>
+                <div class="row mt-lg-5 mt-4">
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 1</h5>
+                                <p class="card-text">Description 1...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 2</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 3</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 4</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 5</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 6</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//banner-bottom-w3layouts-->
+    
+    <!-- showcase -->
+    <section class="offer-service bg-light py-md-5 py-4">
+        <div class="container">
+            <div class="inner-sec-w3ls py-md-5 py-4">
+                <h3 class="tittle-wthree text-center mb-lg-5 mb-3">
+                    <span>Our</span><a href="./second-level/student-projects.html" style="color:#ff4e00; text-decoration:none">Student Projects</a></h3> 
+                <div class="row">
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 1</h5>
+                                <p class="card-text">Description 1...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 2</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 3</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 4</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 5</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 service-in text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Project 6</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- showcase -->

@@ -1,0 +1,15 @@
+name: assistive robotics toolkit
+markdown: kramdown
+toc: true
+
+# Secondary Parameters, for github online
+baseurl: "/AssistiveRoboticsToolbox"
+# for local test
+# baseurl: ""
+
+permalink: /projects/:year/:month/:day/:title
+
+# Prose Settings
+prose:
+  ignore: ['feed.xml', '/stl', '/ply', '/js', '/plugin', '/lib', '/projectors', '_layouts', '/_includes', 'Gruntfile.js', 'package.json', 'proselinks.jsonp', 'ppanchor.matin', '.gitignore', '/search', '/css', '/img', 'favicon.png','_data/*.json','LICENSES.md','README.md','colorscheme.scss','members.html','mentions.html','index.html']
+  # siteurl: 'https://sw3196.github.io/AssistiveRoboticsToolbox/'

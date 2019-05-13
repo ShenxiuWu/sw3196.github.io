@@ -1,0 +1,83 @@
+---
+layout: default
+title: Assistive Robotics Toolkit | Thanks
+sections:
+    refer_link: |
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <link href="css/blog.css" rel='stylesheet' type='text/css' />
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/fontawesome-all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
+    page_action: |
+        <!-- js -->
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <!-- //js -->
+        <script src="js/bootstrap.js"></script>
+        <!--/ start-smoth-scrolling -->
+        <script src="js/move-top.js"></script>
+        <script src="js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 900);
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                /*
+                                        var defaults = {
+                                              containerID: 'toTop', // fading element id
+                                            containerHoverID: 'toTopHover', // fading element hover id
+                                            scrollSpeed: 1200,
+                                            easingType: 'linear' 
+                                         };
+                                        */
+
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
+
+            });
+        </script>
+        <!--// end-smoth-scrolling -->
+---
+
+<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item active">Thanks You!</li>
+				</ol>
+	
+<!-- 404 -->
+<section class="banner-bottom-w3layouts py-md-5 py-3">
+        <div class="inner-sec-w3ls py-md-5 py-3">
+				<div class="error-404 text-center">
+						<h4>404</h4>
+						<p>We have received your comments.</p>
+						<form action="#" method="post">
+							<input class="form-control" class="serch" type="search" name="serch" placeholder="Search here" required="">
+							<button class="btn btn1">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+							<div class="clearfix"> </div>
+						</form>
+						<div class="social_media footer-grid error-page my-4 text-center">
+								<ul class="social mt-lg-0 mt-3 d-flex justify-content-center">
+					<li class="mr-1"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+					<li class="mx-1"><a href="#"><span class="fab fa-twitter"></span></a></li>
+					<li class="mx-1"><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+					<li class="mx-1"><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+					
+				</ul>
+							</div>
+						<a class="b-home btn" href="index.html">Back to Home</a>
+
+            </div>
+		</div>
+	</section>
+	<!-- //404 -->

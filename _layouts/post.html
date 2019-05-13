@@ -1,0 +1,250 @@
+---
+layout: default_post
+title: Assistive Robotics Toolkit | Post
+---
+
+<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="{{ site.baseurl }}/index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item active">Publication</li>
+				</ol>
+	
+  <!-- blog -->
+     <section class="banner-bottom-w3layouts py-lg-5 py-md-5 py-3">
+        <div class="container">
+            <div class="inner-sec-w3ls py-lg-5  py-3">
+                <h3 class="tittle-wthree text-center mb-lg-5 mb-3">
+                    <span>THE</span>{{ page.title }}</h3>
+                <div class="row mt-lg-5 mt-md-4 mt-4">
+                    <!--left-->
+
+                    <!--right-->
+                    <aside class="col-lg-4 right-blog-con text-left">
+                        <div class="right-blog-info text-left">
+                            
+                            <div class="tech-btm">
+                                <h4>Gripper for SDM fingers</h4>
+                                <ul class="list-group single">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#">PneuNets Bending Actuators</a>
+                                        <span class="badge badge-primary badge-pill">10</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#">Design</a>
+                                        <span class="badge badge-primary badge-pill">2</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#">Fabrication</a>
+                                        <span class="badge badge-primary badge-pill">3</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#">Modeling</a>
+                                        <span class="badge badge-primary badge-pill">3</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="#">Testing</a>
+                                        <span class="badge badge-primary badge-pill">6</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tech-btm">
+                                <h4>Bibliography</h4>
+
+                                <div class="blog-grids row mb-3">
+                                    <div class="col-md-7 blog-grid-right">
+                                        <h5>
+                                            Ilievski et al.<a href="#"> (2011) Soft robotics for chemists. </a>
+                                        </h5>
+<!--                                         <div class="sub-meta">
+                                            <span>
+                                            <i class="far fa-clock"></i> 20 May, 2018</span>
+                                        </div> -->
+                                    </div>
+
+                                </div>
+                                <div class="blog-grids row mb-3">
+                                    <div class="col-md-7 blog-grid-right">
+                                        <h5>
+                                            Mosadegh et al.<a href="#"> (2013) Pneumatic Networks for Soft Robotics that Actuate Rapidly. </a>
+                                        </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <div class="tech-btm">
+                                <h4>Contributors</h4>
+
+                                <div class="blog-grids row mb-3 text-left">
+                                    <div class="col-md-5 blog-grid-left">
+                                        <img src="{{ site.baseurl }}/images/team6.jpg" class="img-fluid" alt="">
+                                    </a>
+                                    </div>
+                                    <div class="col-md-7 blog-grid-right">
+
+                                        <h5>
+                                            <a href="single.html">People People 1</a>
+                                        </h5>
+                                    </div>
+
+                                </div>
+                                <div class="blog-grids row mb-3 text-left">
+                                    <div class="col-md-5 blog-grid-left">
+                                        <img src="{{ site.baseurl }}/images/team2.jpg" class="img-fluid" alt="">
+                                    </a>
+                                    </div>
+                                    <div class="col-md-7 blog-grid-right">
+
+                                        <h5>
+                                            <a href="single.html">People People 2 </a>
+                                        </h5>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="blog-grids row mb-3 text-left">
+                                    <div class="col-md-5 blog-grid-left">
+                                        <img src="{{ site.baseurl }}/images/team6.jpg" class="img-fluid" alt="">
+                                    </a>
+                                    </div>
+                                    <div class="col-md-7 blog-grid-right">
+                                        <h5>
+                                            <a href="single.html">People People 3 </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Also Interesting -->
+
+{% assign relevantpostcount = 0 %}
+{% for post in site.posts %}
+    
+    {% if post.title != page.title%} 
+    {% for tag in post.tags %}
+    
+        {% if page.tags contains tag and relevantpostcount == 0 %} 
+        
+        <div class="float-right">
+        <div class="relevantpost" style="padding: 10px">
+        
+        
+        <h4> You may find interesting: </h4> 
+        
+        <hr class="style-one">
+        
+        <a href="{{ post.url | prepend: site.baseurl }}"><h2 class="post-title"> {{ post.title }}</h2></a>
+        
+        {% if post.subtitle %}
+            <h4 class="post-subtitle">{{ post.subtitle }}</h4>
+        {% endif %}
+        
+        <p class="post-meta" style="margin-top: 5px;margin-bottom:5px; font-size: 0.8em">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
+        
+        <div class="notepad-index-post-tags" style="">
+        {% for tag in post.tags %}<a href="{{ site.baseurl }}/search/index.html#{{ tag | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} tag">{{ tag | capitalize }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
+        </div> 
+        
+        {% assign relevantpostcount = 1 %}
+        {% assign recentpost = post.title %}
+        
+        {% continue %}  
+        
+        {% endif %} 
+        
+        {% if page.tags contains tag and relevantpostcount == 1 and post.title != recentpost %} 
+        
+        <hr class="style-one">
+        
+        <a href="{{ post.url | prepend: site.baseurl }}"><h2 class="post-title"> {{ post.title }}</h2></a>
+        
+        {% if post.subtitle %}
+            <h4 class="post-subtitle">{{ post.subtitle }}</h4>
+        {% endif %}
+        
+        <p class="post-meta" style="margin-top: 5px;margin-bottom:5px; font-size: 0.8em">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
+        
+        <div class="notepad-index-post-tags" style="">
+        {% for tag in post.tags %}<a href="{{ site.baseurl }}/search/index.html#{{ tag | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} tag">{{ tag | capitalize }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
+        </div> 
+        
+        {% assign relevantpostcount = 2 %}
+        
+        {% break %} 
+        
+        {% endif %} 
+        
+    {% endfor %}
+    {% endif %}
+    
+{% endfor %}
+
+
+
+
+
+                        </div>
+                    </aside>
+                    <!--//right-->
+
+                    <!--left-->
+                    <div class="col-lg-8 left-blog-info text-left">
+                        <div class="card">
+                            <a href="single.html">
+								<img src="{{ site.baseurl }}/images/banner4.jpg" class="img-fluid" alt="">
+							</a>
+                            <div class="card-body">
+                                <h5 class="card-title ">
+                                    {% if page.subtitle %}
+                                        <h2 class="subheading">{{ page.subtitle }}</h2>
+                                    {% endif %}
+                                </h5>
+                                <p class="card-text">Posted by {{ page.author }} on {{ page.date | date: "%B %-d, %Y" }} </p>
+                                <div class="post">
+                                    <article>{{ content | markdownify }}</article>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <ul class="pager">
+                                {% if page.previous.url %}
+                                <li class="previous">
+                                    <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                                </li>
+                                {% endif %}
+                                {% if page.next.url %}
+                                <li class="next">
+                                    <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="comment-top">
+                            <h4>Leave a Comment</h4>
+                            <div class="comment-bottom">
+                                <form action="mailto:wushenxiu@outlook.com?subject=My Comments" method="post" enctype="text/plain" onsubmit="location.href='thanks.html';">
+                                    <input class="form-control" type="text" name="Name" placeholder="Name" required="">
+                                    <input class="form-control" type="email" name="Email" placeholder="Email" required="">
+
+                                    <input class="form-control" type="text" name="Subject" placeholder="Subject" required="">
+
+                                    <textarea class="form-control" name="Message" placeholder="Message..." required=""></textarea>
+                                    <button type="submit" class="btn btn-primary submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--//left-->
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- //blog-->

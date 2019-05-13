@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <!-- Define keywords for search engines -->
+    <meta name="keywords" content="Assistive Robotics, Exoskeleton, Actuator, Sensor, Education Kit, Advanced Mechatronics Courses, Workshop NSF Event, BIRO Lab" />  
+    <!-- Define a description of your web page -->
+    <meta name="description" content="A platform to display our research work of BIRO Lab">
+    <!-- Define the author of a page -->
+    <meta name="author" content="BIRO Lab">
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    {{ page.sections['refer_link'] | textilize }}
+</head>
+
+<body>
+    <div class="header-top">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="logo-w3">
+                    <h1>
+                        <a class="navbar-brand" href="./index.html">
+                            <i class="fas fa-robot fa-lg"></i> BIRO Lab</a>
+                    </h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                               
+                            </span>
+
+                        </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-lg-auto text-center">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./index.html">Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./about.html">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Showcase
+                                        <i class="fas fa-angle-down"></i>
+                                    </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="../showcase.html">Showcase</a>
+                                <a class="dropdown-item" href="lab-projects.html" title="">Lab Projects</a>
+                                <a class="dropdown-item" href="student-projects.html" title="">Student Projects</a>
+
+
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../compoent.html">Components</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       Publication
+                                        <i class="fas fa-angle-down"></i>
+                                    </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="../publication.html">Publication </a>
+                                <a class="dropdown-item" href="../404.html" title="">Events</a>
+                                <a class="dropdown-item" href="../single.html" title="">Blog Single</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+    </div>
+
+{{ content }}
+
+<!-- footer -->
+<section class="footer py-5">
+    <div class="footer-top-w3layouts py-lg-3">
+        <div class="container">
+            <div class="row footer-grids">
+                <div class="col-lg-4 footer-grid text-justify mr-md-auto">
+                    <div class="footer-logo-w3">
+                        <h3 class="mb-3"><a class="logo-w3" href="../index.html">BIRO Lab</a></h3>
+                        <p>Biomechatronics and Intelligent Robotics Lab is a fantastic lab. Please type more here to introduce the lab!</p>
+                        <ul class="social mt-lg-0 mt-3">
+                    <li class="mr-1"><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                    <li class="mx-1"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li class="mx-1"><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+                    <li class="mx-1"><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                    
+                </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 footer-grid links text-left mr-md-auto">
+                    <h3 class="mb-4"> links </h3>
+                    <ul>
+                        <li>
+                            <a href="../index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="../about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="../publication.html">publication</a>
+                        </li>
+                        <li>
+                            <a href="../compoent.html">Components</a>
+                        </li>
+                        <li>
+                            <a href="../contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 footer-grid links text-left mr-md-auto">
+                    <h3 class="mb-4">contact Us </h3>
+                    <ul>
+                        <li><strong>Address</strong> : Marshak Science Building, Room 705 160 Convent AveNew York, NY 10031 <br> The City College of New York</li>
+                        <li><strong>mobile</strong> : ###</li>
+                        <li><strong>phone</strong> : ###</li>
+                        <li><strong>Mail</strong> : <a href="mailto:info@example.com">info@example.com</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //footer -->
+    <!-- copyright -->
+    <div class="copy_right py-4 text-center">
+        <p>© 2019 BIRO Lab. All rights reserved by <a href="../index.html">BIRO Lab</a></p>
+    </div>
+    <!-- //copyright -->
+    {{ page.sections['page_action'] | textilize }}
+</body>
+
+</html>
