@@ -3,9 +3,9 @@ markdown: kramdown
 toc: true
 
 # Secondary Parameters, for github online
-baseurl: "/AssistiveRoboticsToolbox"
+# baseurl: "/AssistiveRoboticsToolbox"
 # for local test
-# baseurl: ""
+baseurl: ""
 
 permalink: /projects/:year/:month/:day/:title
 
