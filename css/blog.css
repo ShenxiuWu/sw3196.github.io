@@ -102,7 +102,7 @@ ul.blog-icons i {
     margin-bottom: 0;
 }
 ul.blog-icons i:hover {
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 .blog-girds-sec {
     border-top: 1px solid #ddd;
@@ -159,7 +159,7 @@ ul.blog-icons i:hover {
 }
 
 .tech-btm input[type="submit"]:hover {
-background: #ff4e00;
+background: #A2CFC9;
 }
 
 .widget_social li {
@@ -224,7 +224,7 @@ background: #ff4e00;
 .tech-btm h5 a:hover,
 .tech-btm h5 a:focus {
     text-decoration: none;
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 
 .sub-meta span {

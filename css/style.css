@@ -32,7 +32,7 @@ a {
 }
 
 a:link {
-  text-decoration: #ff4e00;
+  text-decoration: #A2CFC9;
 }
 a:visited {
   text-decoration: none;
@@ -40,7 +40,7 @@ a:visited {
 a:hover,
 a:focus {
 	text-decoration: none;
- 	color: #ff4e00;
+ 	color: #A2CFC9;
 }
 a:active {
   text-decoration: none;
@@ -105,7 +105,7 @@ a.navbar-brand {
 }
 
 .logo-w3 i {
-    color:#ff4e00;
+    color:#A2CFC9;
     text-shadow: none;
 }
 
@@ -129,7 +129,7 @@ li.nav-item {
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
     background: transparent;
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 
 .dropdown-item {
@@ -169,7 +169,7 @@ li.nav-item.active {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #ff4e00;
+    color: #A2CFC9;
     text-decoration: none;
     background-color: #f0f0f1;
 }
@@ -216,7 +216,7 @@ h3.tittle-wthree {
 /*-- effect --*/
 /*--/about--*/
 .aboutright h3 {
-    color: #ff4e00;
+    color: #A2CFC9;
     font-weight: 400;
     font-size: 31px;
     letter-spacing: 1px;
@@ -284,11 +284,11 @@ a.animated-button:visited:hover:after {
 /* Victoria Buttons */
 
 a.animated-button.victoria-two {
-	border: 2px solid #ff4e00;
+	border: 2px solid #A2CFC9;
 }
 
 a.animated-button.victoria-two:after {
-	background:#ff4e00;
+	background:#A2CFC9;
 	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
@@ -313,7 +313,7 @@ h3.course {
     color: #fff;
 }
 .course-detials-inner-info h4 {
-    color:#ff4e00;
+    color:#A2CFC9;
     font-weight: 600;
     margin-bottom: 0.6em;
 }
@@ -334,7 +334,7 @@ h3.course {
     padding:15px 0;
     font-size: 14px;
     color: #fff;
-    background:#ff4e00;
+    background:#A2CFC9;
     border: none;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -371,7 +371,7 @@ p.card-text {
     color: #616167;
 }
 h5.card-title {
-    color: #ff4e00;
+    color: #A2CFC9;
     font-size: 1.1em;
     font-weight: 400;
 
@@ -398,7 +398,7 @@ ul.property-box li:nth-child(2) {
 .service-in .card i {
     font-size: 2em;
     margin-bottom: 0.7em;
-    color:#ff4e00;
+    color:#A2CFC9;
 }
 /*--//services--*/
 /*--//--*/
@@ -423,7 +423,7 @@ ul.property-box li:nth-child(2) {
 }
 
 .galsses-grid-left p {
-    color:#ff4e00;
+    color:#A2CFC9;
 }
 
 h4.post {
@@ -446,7 +446,7 @@ span.post-color {
     font-size: 41px;
     letter-spacing: 1px;
     line-height: 2;
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 .stats_info h4 {
     font-size: 20px;
@@ -512,7 +512,7 @@ span.post-color {
 .testimonials_grid label {
     font-size: 0.9em;
     letter-spacing: 1px;
-    color:#ff4e00;
+    color:#A2CFC9;
 }
 .testimonials_grid h3 span {
     font-weight: 100;
@@ -556,7 +556,7 @@ li.breadcrumb-item {
 }
 
 li.breadcrumb-item a {
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 
 .breadcrumb-item.active {
@@ -768,7 +768,7 @@ font-size: 2em;
 }
 
 .serve-grid:hover.serve-grid i {
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 .serve-grid h4 {
 color: #212020;
@@ -977,7 +977,7 @@ color: #212020;
     font-size: 1em;
 }
 .footer-grid ul li a:hover{
-   color: #ff4e00;
+   color: #A2CFC9;
 }
 .footer-grid ul li i:hover{
     color: #00BCD4;
@@ -1020,8 +1020,8 @@ color: #212020;
     cursor:pointer;
 }
 .edu-footer-grid input[type="submit"]:hover{
-    background:#ff4e00;
-    border: 1px solid #ff4e00;
+    background:#A2CFC9;
+    border: 1px solid #A2CFC9;
 }
 .footer-logo-w3 a {
     color: #FFFFFF;
@@ -1088,7 +1088,7 @@ color: #212020;
 }
 .footer-grid ul.social li a span:hover{
     background: #fff;
-    color: #ff4e00;
+    color: #A2CFC9;
 }
 /*-- //footer --*/
 
@@ -1416,6 +1416,22 @@ color: #212020;
         font-size: 1.4em;
     }
 
+}
+
+#logo-header {
+    width: 147px;
+    height: 60px;
+    /*padding-top: 20px;*/
+}
+
+#logo-vertical-bar {
+	border-right: #BBB7B7 2px solid;
+	display:inline-block;margin-right:10px;
+}
+
+#logo-right{
+	display:inline-block;
+	color: #777;
 }
 
 /*--//responsive--*/
