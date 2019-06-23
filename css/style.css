@@ -1247,7 +1247,7 @@ color: #212020;
         margin-bottom: 0.5em;
     }
     .member-img img {
-        width: 50%;
+        width: 50%; /*50*/
         margin-top: 1em;
     }
  }
