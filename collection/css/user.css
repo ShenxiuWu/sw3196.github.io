@@ -1,0 +1,19 @@
+
+
+/* ç”¨æˆ·è‡ªå®šä¹‰ CSS */
+.yhsd_free{
+  display:none;
+}
+
+
+a.flowers {
+    position: fixed;
+    right: 0;
+    bottom: 3rem;
+    background: rgba(185, 20, 32, 0.6);
+    color: #fff;
+    display: block;
+    border-radius: 100px;
+    padding: 5px 10px;
+    z-index:99999;
+}

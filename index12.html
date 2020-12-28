@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 settings-main_background"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie7 settings-main_background"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie8 settings-main_background"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9 settings-main_background"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="settings-main_background"><!--<![endif]-->
+<head>   
+   <meta charset="utf-8">
+    <link rel="preload" href="./js/base.js" as="script" crossorigin>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>Fashion Display</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="Fashion Display">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <link href='./css/base-160225.min.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/yhsd-iconfont-151010.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/yhsd-desktop-2.4.0.min.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/youpage.min.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/fontuetop.css' media='screen' rel='stylesheet' type='text/css' />  
+    <link href='./css/swiper.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/main.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='./css/user.css' media='screen' rel='stylesheet' type='text/css' />
+    <script src='./js/jquery-1.11.3.min.js' type='text/javascript'></script>
+    <script src='./js/Swiper.min.raw.js' type='text/javascript'></script>
+    <script src="./js/jweixin-1.5.0.js"></script>
+    <script src="./js/reporter-0.1.0.js" crossorigin></script>
+    <script src="./js/jssdk-1.4.0.min.js" crossorigin></script>
+    <script src='./js/lazyload.min.js' type='text/javascript'></script>
+    
+
+<!-- 社交分享信息 -->
+
+
+
+  <meta property="og:title" content="Fashion Display" />
+  <meta property="og:description" content="Fashion Display" />
+  <meta property="og:image" content="./image/s.png" />
+  <script>
+    (function () {
+      var _wx = window.wx
+
+      if (!_wx) return
+
+      var ua = window.navigator.userAgent
+
+      if (/miniProgram/i.test(ua) && _wx.miniProgram) {
+        // 微信 小程序 支持
+
+        _wx.miniProgram.postMessage({
+          data: {
+            share: {
+              title: 'Fashion Display',
+              imgUrl: './image/s.png'
+            }
+          }
+        })
+      } else if (/micromessenger/i.test(ua)) {
+        // 微信 Web 支持
+
+        var hasWxSDK = (false) || false
+
+        if (!hasWxSDK) return
+
+        window.yhsdWxShare = {
+          info: {
+            title: 'Fashion Display',
+            desc: 'Fashion Display',
+            link: location.href,
+            imgUrl: './image/s.png',
+            success: function () {},
+            cancel: function () {}
+          },
+          setInfo: function (oInfo) {
+            this.info = oInfo
+          },
+          init: function () {
+            yhsd.ready(function () {
+              $.ajax({
+                url: '/api/v1/third_api/weixin_signature',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                  url: location.href
+                }
+              }).done(function(res) {
+                if (res.code === 200) {
+                  var fnShare = function (type) {
+                    // 留给后面做特殊处理
+                    return yhsdWxShare.info
+                  }
+                  _wx.config({
+                    debug: false,
+                    appId: res.config.appid,
+                    timestamp: res.config.timestamp,
+                    nonceStr: res.config.noncestr,
+                    signature: res.config.signature,
+                    jsApiList: [
+                      "onMenuShareTimeline",
+                      "onMenuShareAppMessage",
+                      "onMenuShareQQ",
+                      "onMenuShareQZone"
+                    ]
+                  })
+                  _wx.ready(function () {
+                    _wx.onMenuShareTimeline(fnShare("timeline"))
+                    _wx.onMenuShareAppMessage(fnShare("frends"))
+                    _wx.onMenuShareQQ(fnShare("qq"))
+                    _wx.onMenuShareQZone(fnShare("qzone"))
+                    // _wx.checkJsApi({
+                    //    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone'], // 需要检测的 JS 接口列表
+                    //    success: function(res) {
+                    //      // alert(JSON.stringify(res))
+                    //      // 以键值对的形式返回，可用的 api 值 true，不可用为 false
+                    //      // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+                    //   }
+                    // })
+                  })
+                  // _wx.error(function(res){
+                  //   alert(JSON.stringify(res))
+                  //   // config 信息验证失败会执行 error 函数，如签名过期导致验证失败，具体错误信息可以打开 config 的 debug 模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+                  // })
+                }
+              });
+            });
+          }
+        }
+        window.yhsdWxShare.init()
+      }
+    })();
+  </script>
+
+<!-- End 社交分享信息 -->
+
+    <style>
+.append-btns{
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+    z-index:48;
+    text-align:center;
+}
+.pre-qrcode-wrap{
+    cursor:pointer;
+    width: 130px;
+    height: 46px;
+    line-height: 46px;
+    border-radius: 4px;
+    background: rgba(0,0,0,.6);
+    font-size: 14px;
+    color: #fff;
+    box-sizing: border-box;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAgCAYAAAAffCjxAAAAnElEQVRIie2WMQrCQBQFJ0HwAhYSG/Vw4n0svYaFwcaT2FhoY2MhBoJjEySIWWVTulO9hcfwuv2oE7VUK+O4qgvUbaSgzTFT78CQftSZavPIIiUC5D2XvEiiJEqiJEqiPxQNWtnO1g98W1QCU2AO7ELF9gf5iQI4NXkGHEKLqoDo0ZHfqXNgHyisgTEwAlaB3hm1UDfqLfISuajLJ7Lz7N/vt9gjAAAAAElFTkSuQmCC);
+    background-repeat: no-repeat;
+    background-position: 15px 7px;
+    padding-left: 44px;
+    display: inline-block;
+}
+.pre-qrcode{
+    position: absolute;
+    top: 0;
+    width: 129px;
+    height: 129px;
+    line-height: 130px;
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 11px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    margin-left: -44px;
+    transition: all 0.6s;
+    transform: translatey(-100px);
+    opacity:0;
+    pointer-events: none;
+}
+.pre-qrcode:before{
+    content: '';
+    display: block;
+    position: absolute;
+    border-top: 10px solid #fff;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    bottom: -10px;
+    left: 57px;
+    z-index: 2;
+}
+.pre-qrcode:after{
+    content: '';
+    display: block;
+    position: absolute;
+    border-top: 11px solid #d8d8d8;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    bottom: -11px;
+    left: 56px;
+    z-index: 1;
+}
+.pre-qrcode-wrap:hover .pre-qrcode,.pre-qrcode.hover{
+    opacity: 1;
+    transform: translatey(-150px);
+}
+.view-intro{
+    cursor:pointer;
+    width: 138px;
+    height: 46px;
+    line-height: 46px;
+    border-radius: 4px;
+    background: rgba(0,0,0,.6);
+    font-size: 13px;
+    color: #fff;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: 10px 11px;
+    display: inline-block;
+    margin-left: 10px;
+    background-size: 25px;
+}
+.view-intro:hover,
+.view-intro:focus{
+    color:#fff!important;
+}
+@media screen and (max-width:768px){
+  .append-btns{
+display:none;}
+.pre-qrcode-wrap{
+display:none;  
+}
+.view-intro {
+    cursor: pointer;
+    width: 80px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 4px;
+    background: rgba(0,0,0,.5);
+    font-size: 12px;
+    color: #fff;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 10px;
+}
+.append-btns{
+bottom:10px;
+}
+}
+
+
+
+</style>
+<script src='./js/jquery.qrcode.min.js'>
+
+</script>
+<script>
+
+$(function () {
+ $('body').append('<div class="append-btns"><a class="view-intro clothing" href="http://panduola.youhaovip.com/?preview_theme_id=66633" target="_blank"><span class="textspan">返回默认</span></a><a class="view-intro homes" href="http://pandola.youhaovip.com/?preview_theme_id=72925" target="_blank"><span class="textspan">跳转一</span></a><a class="view-intro bags" href="http://pandola.youhaovip.com/?preview_theme_id=66816" target="_blank"><span class="textspan">跳转二</span></a><a class="view-intro shoes" href="http://pandola.youhaovip.com/?preview_theme_id=66835" target="_blank"><span class="textspan">跳转三</span></a></div>');
+  $('#preQrcode').qrcode({
+      width: 108,
+      height: 108,
+      text: window.location.href
+    }) 
+});
+
+</script>
+<script>
+  window.productImage='53f649ffe2931e0b91000007/noimage.png';
+  window.vendorImage='578fc93402282e4f18000003/noimage.png';
+  window.iconImage='57acb51702282e3f00000003/noimage.ico';
+  window.shareImage='57acb53a02282e3f00000007/noimage.png';
+  window.assetPath='//asset.ibanquan.com/image/';
+  window.postImage='581a3b0402282e2bcc000003/s.png';
+  window.captchaPath = '//captcha.ibanquan.com';
+  window.ajaxToken='9dd5934c294149a8aaba5a3540d7f709';
+</script>
+<script src='//asset.ibanquan.com/common/js/free.min.js?v=305' type='text/javascript'></script><script>(function(){var yt = document.createElement('script');yt.src = '//asset.ibanquan.com/common/js/tracker-0.0.2.min.js?v=305';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(yt, s);})();</script>      <script>var _mtac = {"senseQuery":1};(function() {var mta = document.createElement("script");mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";mta.setAttribute("name", "MTAH5");mta.setAttribute("sid", "500628070");mta.setAttribute("cid", "500628071");var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(mta, s);})();</script>
+
+    <script>
+  window.$$shop = {"renren_login_url":"https://youhaosuda.com/api/auth?type=renren","enable_weibo_login":true,"allow_invoice_for_order":false,"domain":"pandola.youhaovip.com","instagram_login_url":"https://youhaosuda.com/api/auth?type=instagram","currency":"CNY","weixin_login_url":"http://pandola.youhaovip.com/oauth/weixin","enable_login":true,"enable_douban_login":false,"enable_renren_login":false,"enable_instagram_login":true,"marketing_sms_sign":"","sms_sign":"","redirect_after_payment":"","enable_checkout_anonymously":false,"enable_mobile_regist":true,"active_redirect_after_payment":false,"trade_expired_after":1440,"social_register_style":1,"enable_instagram":true,"enable_email_regist":true,"enable_facebook_login":true,"enable_weixin_sdk":false,"currency_symbol":"￥","close_desc":"网站维护中，请稍后……","url":"http://pandola.youhaovip.com","qq_login_url":"https://youhaosuda.com/api/auth?type=qq\u0026from=http%3A%2F%2Fpandola.youhaovip.com","name":"Fashion Display","permanent_domain":"pandola.youhaovip.com","enable_netease_login":false,"comment_admin_image":{},"weibo_login_url":"https://youhaosuda.com/api/auth?type=weibo","metas":{"comment_script_key":{"script_key":"3a2db0ad9497401c6f56717c39701800"}},"enable_weixin_login":true,"enable_payment_types":["货到付款","支付宝","网银支付",null,"微信支付",null],"comment_customer_image":{},"products_count":134,"enable_qq_login":false,"facebook_login_url":"https://youhaosuda.com/api/auth?type=facebook","enable_username_regist":true,"douban_login_url":"https://youhaosuda.com/api/auth?type=douban","netease_login_url":"https://youhaosuda.com/api/auth?type=netease","enable_comment":false,"admin_url":"http://pandola.youhaovip.com/center","enable_facebook":true}
+  window.$$settings = {"mb_swiper_video1_link":"","mb_swiper_video2_link":"","mb_swiper_video3_link":"","mb_swiper_video4_link":"","mb_swiper_video5_link":"","mb_swiper_video6_link":"","mb_swiper_video7_link":"","pintuan_show":false,"prorec_num":"prorec_num3","nav_campaign_num":"3","campaign_titile1":"CREARTVT Y-PROJECT SS19","campaign_titile2":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile3":"CREARTVT CASTS FOR HUMANSHIFT","campaign_titile4":"VOGUE UKRAINE | PHOTOS BY JESSE LAITINEN","campaign_titile5":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile6":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile7":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile8":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile9":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile10":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile11":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile12":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile13":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile14":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile15":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile16":"POLO RALPH LAUREN I CAMPAIGN","campaign_titile20":"1","campaign_titile19":"1","campaign_titile18":"1","campaign_titile17":"1","collection_header1":"SPRING SUMMER 2019","collection_header2":"FALL WINTER 2018","collection_header3":"SPRING SUMMER 2018","collection_header4":"FALL WINTER 2017","collection_header5":"SPRING SUMMER 2017","collection_header6":"FALL WINTER 2016","collection_header7":"2016SS","collection_header8":"SS2019","collection_header9":"SS2019","collection_header10":"SS2019","collection_header11":"SS2019","collection_header12":"SS2019","collection_header13":"SS2019","collection_header14":"SS2019","collection_header15":"SS2019","collection_header16":"SS2019","index_news_btn":"查看所有","collection_nav_id":"n000014","swiper_video1_link":"","swiper_video2_link":"//asset.ibanquan.com/file/569da15faaba8c5fd10001af","swiper_video3_link":"","swiper_video4_link":"","swiper_video5_link":"","swiper_video6_link":"","swiper_video7_link":"","index_video1":"0","index_video2":"0","index_video3":"0","index_video4":"0","index_video5":"0","index_video6":"0","index_video7":"0","index_video8":"0","index_video9":"0","indexswiper_liubai":false,"index_swiper_delay":"5","index_swiper_num":"0","notice_text_color":"#171717","notice_bg_color":"#f5f5f5","indexpro_btn_name":"查看全部","indexpro_btn":true,"notices-content":"Free Ground Shipping and Returns on US Orders\nNew Reductions up to 60% Off","notice_show":true,"social_border_color":"#ddd","social_hover_color":"#1a1a1a","social_hover_bgcolor":"#ffffff","social_style":"0","pingjia_Color":"#1f1f1f","nav_border":"#ffffff","picText_LI_bottom":"5","mb_prorec_num":"mb_prorec_num1","mb_swiper_slide":false,"index_news_padding":"2","index_news_height":"0.65","index_news_num":"index_news_num2","mb_index_news_num":"mbindex_news_num1","index_news1_name":"PANDOLA  X 明星","index_news2_name":"PANDOLA  X 明星","index_news3_name":"PANDOLA  X 明星","index_news4_name":"PANDOLA  X 明星","index_news5_name":"PANDOLA  X 明星","index_news6_name":"PANDOLA  X 明星","index_news7_name":"PANDOLA  X 明星","index_news8_name":"PANDOLA  X 明星","index_news_img1_show":true,"index_news_img2_show":true,"index_news_img3_show":true,"index_news_img4_show":true,"index_news_img5_show":true,"index_news_img6_show":true,"index_news_img7_show":true,"index_news_img8_show":true,"index_news_title":"最新动态","index_news_show":true,"english_font":"english_font1","album1_1_link":"javascript:void(0);","album1_1_linktype":0,"album1_2_link":"javascript:void(0);","album1_2_linktype":0,"album1_3_link":"javascript:void(0);","album1_3_linktype":0,"album1_4_link":"javascript:void(0);","album1_4_linktype":0,"album1_5_link":"javascript:void(0);","album1_5_linktype":0,"album1_6_link":"javascript:void(0);","album1_6_linktype":0,"album1_7_link":"javascript:void(0);","album1_7_linktype":0,"album1_8_link":"javascript:void(0);","album1_8_linktype":0,"album1_9_link":"javascript:void(0);","album1_9_linktype":0,"album1_10_link":"javascript:void(0);","album1_10_linktype":0,"album1_11_link":"javascript:void(0);","album1_11_linktype":0,"album1_12_link":"javascript:void(0);","album1_12_linktype":0,"album1_13_link":"javascript:void(0);","album1_13_linktype":0,"album1_14_link":"javascript:void(0);","album1_14_linktype":0,"album1_15_link":"javascript:void(0);","album1_15_linktype":0,"album1_16_link":"javascript:void(0);","album1_16_linktype":0,"album1_17_link":"javascript:void(0);","album1_17_linktype":0,"album1_18_link":"javascript:void(0);","album1_18_linktype":0,"album2_1_link":"javascript:void(0);","album2_1_linktype":0,"album2_2_link":"javascript:void(0);","album2_2_linktype":0,"album2_3_link":"javascript:void(0);","album2_3_linktype":0,"album2_4_link":"javascript:void(0);","album2_4_linktype":0,"album2_5_link":"javascript:void(0);","album2_5_linktype":0,"album2_6_link":"javascript:void(0);","album2_6_linktype":0,"album2_7_link":"javascript:void(0);","album2_7_linktype":0,"album2_8_link":"javascript:void(0);","album2_8_linktype":0,"album2_9_link":"javascript:void(0);","album2_9_linktype":0,"album2_10_link":"javascript:void(0);","album2_10_linktype":0,"album2_11_link":"javascript:void(0);","album2_11_linktype":0,"album2_12_link":"javascript:void(0);","album2_12_linktype":0,"album2_13_link":"javascript:void(0);","album2_13_linktype":0,"album2_14_link":"javascript:void(0);","album2_14_linktype":0,"album2_15_link":"javascript:void(0);","album2_15_linktype":0,"album2_16_link":"javascript:void(0);","album2_16_linktype":0,"album2_17_link":"javascript:void(0);","album2_17_linktype":0,"album2_18_link":"javascript:void(0);","album2_18_linktype":0,"album1_1_show":true,"album1_2_show":true,"album1_3_show":true,"album1_4_show":true,"album1_5_show":true,"album1_6_show":true,"album1_7_show":true,"album1_8_show":true,"album1_9_show":false,"album1_10_show":false,"album1_11_show":false,"album1_12_show":false,"album1_13_show":false,"album1_14_show":false,"album1_15_show":false,"album1_16_show":false,"album1_17_show":false,"album1_18_show":false,"album2_1_show":true,"album2_2_show":true,"album2_3_show":true,"album2_4_show":true,"album2_5_show":true,"album2_6_show":true,"album2_7_show":true,"album2_8_show":true,"album2_9_show":false,"album2_10_show":false,"album2_11_show":false,"album2_12_show":false,"album2_13_show":false,"album2_14_show":false,"album2_15_show":false,"album2_16_show":false,"album2_17_show":false,"album2_18_show":false,"beian_link":"/types/t000011","beian_linktype":1,"index_pic_show":true,"section1_style":"pc-2mix","Section1_textStyle":"normal_tran","picText_LI_margin":"2","do-element-pic_padding_show":true,"mhmask_style":"0","picText_maskColor":"#000000","section1_mask":"10","indexSection1_paddingtop":"6","indexSection1_paddingbottom":"0","do-text-wrap_show":true,"text_align":"left","do-textH2_fontWeight":"0","picText_size":"13","picText_Color":"#363636","picDes_size":"26","picDes_Color":"#242422","index_pic_button":"SHOP NOW","index_pic_btn_border_color":"#ffffff","index_pic_btn_bg_color":"#000","index_pic_btn_text":"#ffffff","index_title1":"LOOKBOOK","first-title_show":false,"index_pic_1_show":true,"section1_pic1_link":"/products","section1_pic1_linktype":1,"index_pic_1_text":"2020 Fashion Display","index_pic_1_des":"A Forest Tale","index_pic_2_show":true,"section1_pic2_link":"/products","section1_pic2_linktype":1,"index_pic_2_text":"2020 Fashion Display","index_pic_2_des":"A Taste Of Victory","index_pic_3_show":false,"section1_pic3_link":"/products","section1_pic3_linktype":1,"index_pic_3_text":"2020 Fashion Display","index_pic_3_des":"Into The Blue","index_pic_4_show":false,"section1_pic4_link":"/products","section1_pic4_linktype":1,"index_pic_4_text":"2020 Fashion Display","index_pic_4_des":"Simple Design","index_pic_5_show":true,"section1_pic5_link":"/products","section1_pic5_linktype":1,"index_pic_5_text":"2020 Fashion Display","index_pic_5_des":"Voya Design","index_pic_6_show":true,"section1_pic6_link":"/products","section1_pic6_linktype":1,"index_pic_6_text":"2020 Fashion Display","index_pic_6_des":"In The Wild","index_pic_7_show":false,"section1_pic7_link":"/products","section1_pic7_linktype":1,"index_pic_7_text":"Photo by Elena Iv-Skaya","index_pic_7_des":"Dreamer Pool I","index_pic_8_show":false,"section1_pic8_link":"/products","section1_pic8_linktype":1,"index_pic_8_text":"2020 Fashion Display","index_pic_8_des":"Our Posters","index_pic_9_show":true,"section1_pic9_link":"/products","section1_pic9_linktype":1,"index_pic_9_text":"Photo by Elena Iv-Skaya","index_pic_9_des":"Unique Logo","index_album2_show":true,"index_album1_show":true,"newbutton2_link":"/blogs/b000005","newbutton2_linktype":0,"newbutton2":"查看专辑","newbutton1_link":"/blogs/b000005","newbutton1_linktype":0,"newbutton1":"查看专辑","lookbook_grid_pb":"0.4","lookbook_grid_pl":"0.2","album_titile1":"2020 Fashion Display","prolist-text-position":"hover_bottom","pro-align":"procenter","index_text2":"现代女性在快节奏的生活中扮演着多变的角色，希望无论何时何地，都可以在该系列中找到适合你此刻想要的服装。","hero_lunbo":"lunbo","index_pro_amount":"12","index_product_show":true,"index_display_page":"g000051","index_title2":"2020春夏新片","index_title2_show":false,"section2_more_link":"/products","section2_more_linktype":0,"indexSection2_style":"lunbo_section2","Proautoplay":"no1","product_num":"product_num3","mb_product_num":"mb_product_num1","mb_product_stagepadding":"80","indexSection2_width":"0","indexSection2-item-padding":"1","indexSection2-item-padding-tb":"0","indexSection2_background":"#f00000","index-display-item_background":"#ffffff","product-carousel2_background_show":true,"indexSection2_paddingtop":"5","indexSection2_paddingbottom":"5","part_3_7_link2":"/vendors/v000003","part_3_7_link2type":1,"part_3_6_link2":"/vendors/v000003","part_3_6_link2type":1,"part_3_5_link2":"/vendors/v000003","part_3_5_link2type":1,"part_3_4_link2":"/vendors/v000003","part_3_4_link2type":1,"part_3_3_link2":"/products","part_3_3_link2type":1,"part_3_2_link2":"/products","part_3_2_link2type":1,"part_3_1_link2":"/products","part_3_1_link2type":1,"part_3_7_link_text2":"SHOP NOW","part_3_6_link_text2":"WOMEN","part_3_5_link_text2":"WOMEN","part_3_4_link_text2":"WOMEN","part_3_3_link_text2":"WOMEN","part_3_2_link_text2":"WOMEN","part_3_1_link_text2":"WOMEN","loader_line_color":"#141414","section1_position":"0","nav_loobook_num":"2","nav_productwm_num":"5","nav_productmen_num":"6","new_num2":"7","pcScroll_height":"C","sliderHeight_defined":"1100","mbScroll_height":"mb3","mbSliderHeight_defined":"460","lunbo_paddingbottom":"0","index_swiper_fade":"0","autoplay":"yes","imgAmimation_show":"0","owlText_animate":"fadeInBottom","mobileSlider_img":true,"part3_text_align":"part3_text_align_left","silderTitle_fontSize":"22","silder_Title_fontWeight":false,"silderDesc_fontSize":"42","silder_Desc_fontWeight":true,"mb_silderTitle_fontSize":"16","mb_silderDesc_fontSize":"26","part_3_1_show":true,"part_3_1_link":"/products","part_3_1_linktype":1,"part_3_1_background":"#ffffff","part_3_1_title_color":"#ffffff","part_3_1_desc_color":"#ffffff","part_3_1_link_color":"#ffffff","part_3_1_link_bgcolor":"#171717","part_3_2_show":true,"part_3_2_link":"/products","part_3_2_linktype":1,"part_3_2_background":"#ffffff","part_3_2_title_color":"#ffffff","part_3_2_desc_color":"#ffffff","part_3_2_link_color":"#141414","part_3_2_link_bgcolor":"#ffffff","part_3_3_show":true,"part_3_3_link":"/products","part_3_3_linktype":1,"part_3_3_background":"#ffffff","part_3_3_title_color":"#1f1f1f","part_3_3_desc_color":"#1f1f1f","part_3_3_link_color":"#ffffff","part_3_3_link_bgcolor":"#1a1a1a","part_3_4_show":false,"part_3_4_link":"/vendors/v000003","part_3_4_linktype":1,"part_3_4_background":"#ffffff","part_3_4_title_color":"#ffffff","part_3_4_desc_color":"#ffffff","part_3_4_link_color":"#141414","part_3_4_link_bgcolor":"#ffffff","part_3_5_show":false,"part_3_5_link":"/vendors/v000003","part_3_5_linktype":1,"part_3_5_background":"#ffffff","part_3_5_title_color":"#ffffff","part_3_5_desc_color":"#ffffff","part_3_5_link_color":"#1a1a1a","part_3_5_link_bgcolor":"#ffffff","part_3_6_show":false,"part_3_6_link":"/vendors/v000003","part_3_6_linktype":1,"part_3_6_background":"#ffffff","part_3_6_title_color":"#ffffff","part_3_6_desc_color":"#ffffff","part_3_6_link_color":"#141414","part_3_6_link_bgcolor":"#ffffff","part_3_7_show":false,"part_3_7_link":"/vendors/v000003","part_3_7_linktype":1,"part_3_7_background":"#ffffff","part_3_7_title_color":"#292929","part_3_7_desc_color":"#2e2e2e","part_3_7_link_color":"#ffffff","part_3_7_link_bgcolor":"#111","part-item-1-text-position":"part-item-1-center-center","part-item-2-text-position":"part-item-2-center-center","part-item-3-text-position":"part-item-3-center-center","part-item-4-text-position":"part-item-4-center-center","part-item-5-text-position":"part-item-5-center-center","part-item-6-text-position":"part-item-6-center-center","part-item-7-text-position":"part-item-7-center-center","part_3_1_title_text":"副标题","part_3_1_desc_text":" 2020 Our Fashion Show","part_3_1_link_text":"SHOP NOW","part_3_2_title_text":"副标题","part_3_2_desc_text":" 2020 Our Fashion Show","part_3_2_link_text":"SHOP NOW","part_3_3_title_text":"副标题","part_3_3_desc_text":" 2020 Our Fashion Show","part_3_3_link_text":"SHOP NOW","part_3_4_title_text":"2020 Fashion Display","part_3_4_desc_text":"副标题","part_3_4_link_text":"SHOP NOW","part_3_5_title_text":"SUMMER COLLECTION","part_3_5_desc_text":"Retro Fashion","part_3_5_link_text":"SHOP NOW","part_3_6_title_text":"SUMMER COLLECTION","part_3_6_desc_text":"Retro Fashion","part_3_6_link_text":"SHOP NOW","part_3_7_title_text":"#TRENING 2018","part_3_7_desc_text":"春夏新品","part_3_7_link_text":"即刻选购","prodetail_width":"pro-full","filter_background":"#ffffff","proList_Title_color":"#242424","top_banner_img_show":"top_banner_text","log-bg-img-show":true,"loader-logo-height":"26","loader-logo-mbheight":"25","loader_show":true,"loader_background":"#fafafa","post-item-height":"1","posts-item-summary-show":true,"postlist-white-show":"postlist-white","postItem-num":"postItem_num4","mb-posts-items-number":"mb-posts-item2","posts_list_title":"所有媒体","weixin_bottom_show":true,"weibo_bottom_show":true,"facebook_bottom_show":false,"facebook_link":"https://facebook.com/","facebook_linktype":1,"twitter_bottom_show":false,"twitter_link":"https://twitter.com/","twitter_linktype":1,"pinterest_bottom_show":false,"pinterest_link":"https://pinterest.com/","pinterest_linktype":1,"instagram_bottom_show":true,"instagram_link":"https://instagram.com/","instagram_linktype":1,"tmall_bottom_show":true,"tmall_link":"https://tmall.com/","tmall_linktype":1,"taobao_bottom_show":false,"taobao_link":"https://taobao.com/","taobao_linktype":1,"nav_color":"#141414","sub_nav_color":"#969696","logo_style":"black","left_bar_background":"#ffffff","logo_width":"78","logo_height":"16","price_discount_color":"#ffffff","prolist_price_discount":"#0a0a0a","price_disconunt_style":"price_disconunt_top_square","orgprice_color":"#999999","proPrice_color":"#1a1a1a","proDesc_color":"#111","proTitle_color":"#1a1a1a","grid_Font_size":"0","grid_text_align_style":"grid_text_align_left","product_titleheight":"title_heightone","price_disconunt_show":true,"proShort_desc":false,"pro_vendor_name_show":false,"mb_gridItem_gap":"1.2","gridItem_gap":"2","pic_item_height":"1.5","gridItemImg_hover_style":"gridItemImg_hover_switch","grid-item-height_show":true,"mb_grid-tiem-number":"0","grid-tiem-number":"grid_item3","page_size":"80","proList_width":"0","wmimg2_show ":true,"wmimg3_show ":true,"wmimg4_show ":true,"wmimg5_show ":true,"menimg2_show ":true,"menimg3_show ":true,"menimg4_show ":true,"menimg5_show ":true,"lookbook_img_height":"1.5","lookbook_items":"0","lookbook_imgs_men1":"./image/5b31ad7253f4e35d3b001a24.jpeg\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317\n//asset.ibanquan.com/image/5b31ad6e26a8015dbc001618/s.jpeg?v=1529982318\n//asset.ibanquan.com/image/5b31ad6f53f4e35d3b001a21/s.jpeg?v=1529982319\n//asset.ibanquan.com/image/5b31ad70180e165cfa001d54/s.jpeg?v=1529982320\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317","lookbook_imgs_men2":"//asset.ibanquan.com/image/5b3441cc20663d5ed70026e3/s.jpeg?v=1530151373\n//asset.ibanquan.com/image/5b3441c753f4e35d3b0021f1/s.jpeg?v=1530151367\n//asset.ibanquan.com/image/5b3441bd26a8015dc00025ff/s.jpeg?v=1530151357\n//asset.ibanquan.com/image/5b3441b826a8015dc00025f7/s.jpeg?v=1530151353\n//asset.ibanquan.com/image/5b3441b3180e165cf6001c3a/s.jpeg?v=1530151347\n//asset.ibanquan.com/image/5b3441ae53f4e35d3f002143/s.jpeg?v=1530151343\n//asset.ibanquan.com/image/5b3441a326a8015dbc001ba9/s.jpeg?v=1530151332\n//asset.ibanquan.com/image/5b34419c53f4e35d3f00213b/s.jpeg?v=1530151325\n//asset.ibanquan.com/image/5b34419320663d5ed3001971/s.jpeg?v=1530151316\n//asset.ibanquan.com/image/5b344189180e165cf6001c2e/s.jpeg?v=1530151305\n//asset.ibanquan.com/image/5b34418e180e165cf6001c31/s.jpeg?v=1530151310","lookbook_imgs_men3":"//asset.ibanquan.com/image/5b30cf05180e165cfa001c19/s.jpeg?v=1529925381\n//asset.ibanquan.com/image/5b30cf0426a8015dbc0014d9/s.jpeg?v=1529925380\n//asset.ibanquan.com/image/5b30cf0353f4e35d3b00189b/s.jpeg?v=1529925379\n//asset.ibanquan.com/image/5b30cf024194e559a50019ca/s.jpeg?v=1529925378\n//asset.ibanquan.com/image/5b30cf0153f4e35d3f00186a/s.jpeg?v=1529925377\n//asset.ibanquan.com/image/5b30cf0153f4e35d3f00186a/s.jpeg?v=1529925377\n//asset.ibanquan.com/image/5b30cf0026a8015dc0001c2e/s.jpeg?v=1529925376\n//asset.ibanquan.com/image/5b30cefe20663d5ed300138c/s.jpeg?v=1529925375\n//asset.ibanquan.com/image/5b30cf05180e165cfa001c19/s.jpeg?v=1529925381\n//asset.ibanquan.com/image/5b30cf0426a8015dbc0014d9/s.jpeg?v=1529925380\n//asset.ibanquan.com/image/5b30cf0353f4e35d3b00189b/s.jpeg?v=1529925379","lookbook_imgs_men4":"//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317\n//asset.ibanquan.com/image/5b31ad6e26a8015dbc001618/s.jpeg?v=1529982318\n//asset.ibanquan.com/image/5b31ad6f53f4e35d3b001a21/s.jpeg?v=1529982319\n//asset.ibanquan.com/image/5b31ad70180e165cfa001d54/s.jpeg?v=1529982320\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317","lookbook_imgs_men5":"//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317\n//asset.ibanquan.com/image/5b31ad6e26a8015dbc001618/s.jpeg?v=1529982318\n//asset.ibanquan.com/image/5b31ad6f53f4e35d3b001a21/s.jpeg?v=1529982319\n//asset.ibanquan.com/image/5b31ad70180e165cfa001d54/s.jpeg?v=1529982320\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad7253f4e35d3b001a24/s.jpeg?v=1529982322\n//asset.ibanquan.com/image/5b31ad6c53f4e35d3b001a1d/s.jpeg?v=1529982316\n//asset.ibanquan.com/image/5b31ad6d180e165cfa001d51/s.jpeg?v=1529982317","men_tab1":"2018冬季","men_tab2":"2018早秋","men_tab3":"2018春夏","men_tab4":"2018早春","men_tab5":"FALL2017","lookbook_imgs_wm1":"//asset.ibanquan.com/image/5b7e748e20663d41a4000fd9/s.jpeg?v=1535014030\n//asset.ibanquan.com/image/5b7e748d26a801444c000ec2/s.jpeg?v=1535014029\n//asset.ibanquan.com/image/5b7e748b53f4e34066000e83/s.jpeg?v=1535014028\n//asset.ibanquan.com/image/5b7e748a4194e54a2f000e89/s.jpeg?v=1535014026\n//asset.ibanquan.com/image/5b7e748853f4e34062000df5/s.jpeg?v=1535014025\n//asset.ibanquan.com/image/5b7e7487180e1642d8000fab/s.jpeg?v=1535014023\n//asset.ibanquan.com/image/5b7e748520663d41a8000e3d/s.jpeg?v=1535014021\n//asset.ibanquan.com/image/5b7e74834194e54a2f000e85/s.jpeg?v=1535014019\n//asset.ibanquan.com/image/5b7e748020663d41a8000e39/s.jpeg?v=1535014017\n//asset.ibanquan.com/image/5b7e747e53f4e34062000df2/s.jpeg?v=1535014014\n//asset.ibanquan.com/image/5b7e747c4194e54a2f000e82/s.jpeg?v=1535014012\n//asset.ibanquan.com/image/5b7e747a53f4e34062000def/s.jpeg?v=1535014010\n//asset.ibanquan.com/image/5b7e7478180e1642d8000fa4/s.jpeg?v=1535014008\n//asset.ibanquan.com/image/5b7e747626a801444c000ebb/s.jpeg?v=1535014006\n//asset.ibanquan.com/image/5b7e747420663d41a8000e35/s.jpeg?v=1535014005\n//asset.ibanquan.com/image/5b7e747226a8014450000e6c/s.jpeg?v=1535014002\n//asset.ibanquan.com/image/5b7e747053f4e34062000dec/s.jpeg?v=1535014000\n//asset.ibanquan.com/image/5b7e746e20663d41a4000fce/s.jpeg?v=1535013998\n//asset.ibanquan.com/image/5b7e746c26a801444c000eb7/s.jpeg?v=1535013996\n//asset.ibanquan.com/image/5b7e746a20663d41a8000e2f/s.jpeg?v=1535013994\n//asset.ibanquan.com/image/5b7e746853f4e34066000e7c/s.jpeg?v=1535013992\n//asset.ibanquan.com/image/5b7e7466180e1642dc000ee2/s.jpeg?v=1535013990\n//asset.ibanquan.com/image/5b7e746420663d41a8000e2b/s.jpeg?v=1535013989\n//asset.ibanquan.com/image/5b7e746226a8014450000e69/s.jpeg?v=1535013986\n//asset.ibanquan.com/image/5b7e746020663d41a8000e27/s.jpeg?v=1535013984\n//asset.ibanquan.com/image/5b7e745e4194e54a2f000e7f/s.jpeg?v=1535013982\n//asset.ibanquan.com/image/5b7e745c180e1642d8000fa0/s.jpeg?v=1535013980\n//asset.ibanquan.com/image/5b7e745953f4e34062000de8/s.jpeg?v=1535013977\n//asset.ibanquan.com/image/5b7e7457180e1642d8000f9c/s.jpeg?v=1535013975\n//asset.ibanquan.com/image/5b7e745526a801444c000eb3/s.jpeg?v=1535013973","lookbook_imgs_wm2":"//asset.ibanquan.com/image/5b3185fb4194e559a5001ab7/s.jpeg?v=1529972219\n//asset.ibanquan.com/image/5b3185fa20663d5ed7001d9d/s.jpeg?v=1529972218\n//asset.ibanquan.com/image/5b3185f926a8015dc0001d3c/s.jpeg?v=1529972217\n//asset.ibanquan.com/image/5b3185f853f4e35d3f00195b/s.jpeg?v=1529972216\n//asset.ibanquan.com/image/5b3185f74194e559a5001ab4/s.jpeg?v=1529972215\n//asset.ibanquan.com/image/5b3185f620663d5ed7001d9a/s.jpeg?v=1529972214\n//asset.ibanquan.com/image/5b3185f426a8015dc0001d39/s.jpeg?v=1529972213\n//asset.ibanquan.com/image/5b3185f320663d5ed7001d97/s.jpeg?v=1529972211\n//asset.ibanquan.com/image/5b3185fb4194e559a5001ab7/s.jpeg?v=1529972219\n//asset.ibanquan.com/image/5b3185fa20663d5ed7001d9d/s.jpeg?v=1529972218\n//asset.ibanquan.com/image/5b3185f926a8015dc0001d3c/s.jpeg?v=1529972217","lookbook_imgs_wm3":"//asset.ibanquan.com/image/5b31853220663d5ed7001d94/s.jpeg?v=1529972018\n//asset.ibanquan.com/image/5b31853053f4e35d3f001955/s.jpeg?v=1529972016\n//asset.ibanquan.com/image/5b31852f180e165cf6001585/s.jpeg?v=1529972015\n//asset.ibanquan.com/image/5b31852d26a8015dc0001d36/s.jpeg?v=1529972013\n//asset.ibanquan.com/image/5b31852b20663d5ed7001d91/s.jpeg?v=1529972011\n//asset.ibanquan.com/image/5b31852953f4e35d3f001952/s.jpeg?v=1529972009\n//asset.ibanquan.com/image/5b3185274194e559a5001aae/s.jpeg?v=1529972007\n//asset.ibanquan.com/image/5b318525180e165cf6001582/s.jpeg?v=1529972005\n//asset.ibanquan.com/image/5b31853220663d5ed7001d94/s.jpeg?v=1529972018\n//asset.ibanquan.com/image/5b31853053f4e35d3f001955/s.jpeg?v=1529972016\n//asset.ibanquan.com/image/5b31852f180e165cf6001585/s.jpeg?v=1529972015","lookbook_imgs_wm4":"//asset.ibanquan.com/image/5b321d764194e559a5001dce/s.jpeg?v=1530010998\n//asset.ibanquan.com/image/5b321d75180e165cfa001ff2/s.jpeg?v=1530010997\n//asset.ibanquan.com/image/5b321d7453f4e35d3b001c8d/s.jpeg?v=1530010996\n//asset.ibanquan.com/image/5b321d7320663d5ed70020e9/s.jpeg?v=1530010995\n//asset.ibanquan.com/image/5b321d724194e559a5001dcb/s.jpeg?v=1530010994\n//asset.ibanquan.com/image/5b321d71180e165cfa001fef/s.jpeg?v=1530010993\n//asset.ibanquan.com/image/5b321d6f26a8015dc000205c/s.jpeg?v=1530010992\n//asset.ibanquan.com/image/5b321d6e4194e559a90019ee/s.jpeg?v=1530010991\n//asset.ibanquan.com/image/5b321d6d53f4e35d3f001bb3/s.jpeg?v=1530010989\n//asset.ibanquan.com/image/5b321d764194e559a5001dce/s.jpeg?v=1530010998\n//asset.ibanquan.com/image/5b321d75180e165cfa001ff2/s.jpeg?v=1530010997","lookbook_imgs_wm5":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm6":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm7":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm8":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm9":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm10":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm11":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm12":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm13":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm14":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm15":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","lookbook_imgs_wm16":"//asset.ibanquan.com/image/5b3028e026a8015dc0001874/s.jpeg?v=1529882848\n//asset.ibanquan.com/image/5b3028df180e165cf60011ef/s.jpeg?v=1529882847\n//asset.ibanquan.com/image/5b3028de53f4e35d3b001602/s.jpeg?v=1529882846\n//asset.ibanquan.com/image/5b3028dd4194e559a900139d/s.jpeg?v=1529882845\n//asset.ibanquan.com/image/5b30275526a8015dc0001870/s.jpeg?v=1529882453\n//asset.ibanquan.com/image/5b3027544194e559a50016f9/s.jpeg?v=1529882452\n//asset.ibanquan.com/image/5b302753180e165cfa001899/s.jpeg?v=1529882451\n//asset.ibanquan.com/image/5b30275220663d5ed70018f1/s.jpeg?v=1529882450","women_tab1":"2018冬季","women_tab2":"2018早秋","women_tab3":"2018春夏","women_tab4":"2018早春","women_tab5":"FALL2017","weibo_link":"https://weibo.com/","weibo_linktype":1,"index_pic_1_link":"/pages/campaign","index_pic_1_linktype":0,"index_pic_2_link":"javascript:void(0);","index_pic_2_linktype":0,"index_pic_3_link":"javascript:void(0);","index_pic_3_linktype":0,"index_show_welcome_page":true,"index_welcome_page":"welcome","main_nav_id":"main","product_nav_id":"n000001","second_nav_id":"footer","footer_nav_id":"footer","footerLink_color":"#9b9b9b","price_color":"#ff5555","proPic_border":"#d2d2d2","buyBtn_background":"#000","buyBtn_color":"#ffffff","optionUnSelected_color":"#333333","optionUnSelected_border":"#dddddd","optionUnSelected_background":"#ffffff","optionSelected_color":"#555555","optionSelected_border":"#555555","optionSelected_background":"#eeeeee","optionDisabled_color":"#cccccc","optionDisabled_border":"#e2e2e2","optionDisabled_background":"#f7f7f7","pro_showStock":true,"pro_showSale":true,"list_filter_show":false,"link_color":"#55aa77","desc_color":"#6e6e6e","main_border":"#dddddd","ipt_border":"#d5d5d5","mainBtn_background":"#222","mainBtn_color":"#ffffff","online_service_show":false,"online_service_style":"1","online_service_qq":"87878787","pro_background":"#f4f4f4","formTitle_background":"#f0f0f0","form_background":"#f0f0f0","formBtn_color":"#ffffff","formBtn_background":"#0a97f5","form_border":"#0a97f5","inputImpt_color":"#fe434c","mainS_Color":"#262626","share_box":false,"footer_text":"Copyright © 2016 UETOP版权所有","footer_text2":"粤ICP备06005657号","show_sample":true,"body_background":"#ffffff","post_dir_background":"#f6f6f6","post_tag_background":"#efefef","gridItem_gap_tb":"1","wmimg2_show":true,"wmimg3_show":true,"wmimg4_show":true,"wmimg5_show":false,"menimg2_show":true,"menimg3_show":true,"menimg4_show":true,"shade_show":false,"sliderMask":"10","index_slide_fade":"0","text_color":"#212121","proalign":"procenter","album_titile2":"2020 Fashion Display","index_news_button_link":"/posts","index_news1_link":"/posts","index_news1_linktype":1,"index_news2_link":"/posts","index_news2_linktype":1,"index_news3_link":"/posts","index_news3_linktype":1,"index_news4_link":"/posts","index_news4_linktype":1,"index_news5_link":"/posts","index_news5_linktype":1,"index_news6_link":"/posts","index_news6_linktype":1,"index_news7_link":"/posts","index_news7_linktype":1,"index_news8_link":"/posts","index_news8_linktype":1,"indexSection2_itemPadding_show":true,"notices_link":"javascript:void(0);\njavascript:void(0);","indexpro_btn_show":true,"text_Color":"#383838","index_video1_link":"//qsms.stream.ibanquan.com/o_1d3il347cck61hil1tod13vorsg7.mp4","index_video2_link":"https://cdn.shopify.com/s/files/1/0635/0815/files/Look7_and_8.mp4?10616688967620742437","index_video3_link":"http://assets.yesstud.io/shotview/video/shotview_69676.mp4","index_video4_link":"http://qsms.stream.ibanquan.com/o_1crhe6pc716jp1iqoi3vceqma6c.mp4","index_video5_link":"http://qsms.stream.ibanquan.com/o_1crhe6pc716jp1iqoi3vceqma6c.mp4","index_video6_link":"http://assets.yesstud.io/shotview/video/shotview_96633.mp4","index_video7_link":"http://qsms.stream.ibanquan.com/o_1crhe6pc716jp1iqoi3vceqma6c.mp4","index_video8_link":"http://assets.yesstud.io/shotview/video/shotview_95904.mp4","index_video9_link":"http://qsms.stream.ibanquan.com/o_1crhe6pc716jp1iqoi3vceqma6c.mp4","campaign_img1":"//asset.ibanquan.com/image/5c4c0e5b53f4e312110003f7/s.jpeg?v=1548488284\n//asset.ibanquan.com/image/5c4c0e5a180e16076e00045a/s.jpeg?v=1548488282\n//asset.ibanquan.com/image/5c4c0e5f4194e52dd2000364/s.jpeg?v=1548488287\n//asset.ibanquan.com/image/5c4c0e5e180e1607720004c0/s.jpeg?v=1548488286\n//asset.ibanquan.com/image/5c4c0e5c20663d7e980004fd/s.jpeg?v=1548488285\n//asset.ibanquan.com/image/5c4c0e5926a80112e50004a9/s.jpeg?v=1548488281\n//asset.ibanquan.com/image/5c4c0e584194e52dd600058c/s.jpeg?v=1548488280\n//asset.ibanquan.com/image/5c4c0e57180e16076e000457/s.jpeg?v=1548488279\n//asset.ibanquan.com/image/5c4c0e5626a80112e50004a6/s.jpeg?v=1548488278\n//asset.ibanquan.com/image/5c4c0e5520663d7e940003f0/s.jpeg?v=1548488277\n//asset.ibanquan.com/image/5c4c0e5453f4e312150004ad/s.jpeg?v=1548488276\n//asset.ibanquan.com/image/5c4c0e52180e16076e000454/s.jpeg?v=1548488275","campaign_img2":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img3":"//asset.ibanquan.com/image/5c4c29494194e52dd20003ee/s.jpeg?v=1548495178\n//asset.ibanquan.com/image/5c4c2947180e16077200050b/s.jpeg?v=1548495176\n//asset.ibanquan.com/image/5c4c294553f4e31215000520/s.jpeg?v=1548495174\n//asset.ibanquan.com/image/5c4c29434194e52dd20003e9/s.jpeg?v=1548495172\n//asset.ibanquan.com/image/5c4c293e26a80112e9000416/s.jpeg?v=1548495167\n//asset.ibanquan.com/image/5c4c293c4194e52dd20003e4/s.jpeg?v=1548495164","campaign_img4":"//asset.ibanquan.com/image/5c4c2a1a4194e52dd60005e1/s.jpeg?v=1548495386\n//asset.ibanquan.com/image/5c4c2a1753f4e31215000529/s.jpeg?v=1548495384\n//asset.ibanquan.com/image/5c4c2a154194e52dd20003f5/s.jpeg?v=1548495382\n//asset.ibanquan.com/image/5c4c2a13180e16076e0004b4/s.jpeg?v=1548495379\n//asset.ibanquan.com/image/5c4c2a1153f4e3121100045d/s.jpeg?v=1548495378\n//asset.ibanquan.com/image/5c4c2a0f4194e52dd60005de/s.jpeg?v=1548495375\n//asset.ibanquan.com/image/5c4c2a0d53f4e31215000526/s.jpeg?v=1548495374\n//asset.ibanquan.com/image/5c4c2a0b20663d7e94000481/s.jpeg?v=1548495371","campaign_img5":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img6":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img7":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img8":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img9":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img10":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img11":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img12":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img13":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img14":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img15":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img16":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img17":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img18":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img19":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","campaign_img20":"//asset.ibanquan.com/image/5c4bfda953f4e3121500047a/s.jpeg?v=1548484009\n//asset.ibanquan.com/image/5c4bfdac26a80112e500048c/s.jpeg?v=1548484012\n//asset.ibanquan.com/image/5c4bfdaa20663d7e940003dd/s.jpeg?v=1548484010\n//asset.ibanquan.com/image/5c4bfda84194e52dd2000351/s.jpeg?v=1548484008\n//asset.ibanquan.com/image/5c4bfda7180e16076e00040a/s.jpeg?v=1548484007\n//asset.ibanquan.com/image/5c4bfda526a80112e900037b/s.jpeg?v=1548484006\n//asset.ibanquan.com/image/5c4bfda420663d7e980004ea/s.jpeg?v=1548484004\n//asset.ibanquan.com/image/5c4bfda3180e1607720004ae/s.jpeg?v=1548484003\n//asset.ibanquan.com/image/5c4bfda126a80112e9000378/s.jpeg?v=1548484001\n//asset.ibanquan.com/image/5c4bfd9f20663d7e980004e7/s.jpeg?v=1548484000\n//asset.ibanquan.com/image/5c4bfd9e53f4e31215000477/s.jpeg?v=1548483998","service_wx_show":true,"service_qq_show":true,"pop_weixinText2_show":true,"pop_weixinText2":"888888888","pop_weixinText1":"微信公众号：pkqpkpk","index_bigpic1_show":true,"BigPic1Img_height":"1100","mbBigPic1Img_height":"1200","logo_base64":"data:image/png;base64,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","img_bg_color":"#f5f5f5"}
+  
+  // 测试阶段临时默认设置
+  window.$$settings.SkSearchView_showProducts = true
+  window.$$settings.SkSearchView_showPosts = true
+  window.$$settings.SkSearchView_showBlogs = true
+  // End 测试阶段临时默认设置
+</script> 
+</head>
+<body class="  settings-main_background">
+  <div class="blure"> 
+     
+  <div class="notice-swiper swiper-container">
+  <div class="swiper-wrapper">
+  
+  
+   
+  <div class="swiper-slide">
+  <a href="javascript:void(0);" target="_blank" title="">Free Ground Shipping and Returns on US Orders</a>
+  </div>
+  
+  <div class="swiper-slide">
+  <a href="
+javascript:void(0);" target="_blank" title="">
+New Reductions up to 60% Off</a>
+  </div>
+   
+  </div>
+  </div>
+   <script>
+    var notice_swiper = new Swiper('.notice-swiper.swiper-container', {
+     
+      preventClicks : false,
+     
+      direction: 'vertical',
+      loop: true,                                                              
+      autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+     } 
+  });  
+ </script>
+  
+<div id="nav_wap">
+  <div class="nav_logo div_wap">
+    <div class="nav_logo_inner">
+      <a href="/"><img src="//asset.ibanquan.com/s/66633/0/logo?v=1587615612_1587615612"  alt="Fashion Display"/>
+      </a>
+    </div>
+  </div>
+  <div class="nav_left div_wap">
+    <a id="nav-menu">
+      <span></span><span></span><span></span><span></span>
+    </a>
+  </div>
+   <div class="nav_right">  
+      <div class="nav-cart">
+        <a id="yhsd_topCart_show" class="header-cart nav-cart-a" href="/cart">
+         <span class="fontuetop icon-bag-normal nav-cart-a-icon"></span>
+         <span id="yhsd_topCart_quantityTitle" class="nav-cart-a-total" >0</span>
+         </a>
+      </div> 
+ <div id="search_button" class="search_button" ><i class="fontuetop 
+icon-search222"></i>
+    </div>          
+      <div class="topCart settings-body_background settings-main_border div_pc" id="yhsd_topCart">
+        <ul id="yhsd_topCart_list"></ul>
+         <div class="topCart-summary">
+           <p class="topCart-total settings-text_color"><span id="yhsd_topCart_quantity">
+             </span>件商品　总计:<span class="settings-price_color">￥<span id="yhsd_topCart_totalPrice"></span></span>
+           </p>
+          <a class="topCart-submit settings-buyBtn_color settings-buyBtn_background" href="/cart">去结算</a>
+          </div>
+        </div>
+    </div>
+</div>
+  <div class="nav-search-bar">
+    <div class="nav-search-middle">
+    <i id="search_close"   class="fontuetop 
+search-close"> <img src="//asset.ibanquan.com/s/66633/0/arr_close?v=1587615612_1587615612"  alt=""/></i>
+    <div class="nav-search-inner">
+     <ul class="search-menu">
+       <li>
+        <form action="/search">
+        <input class="" type="search" name="terms" placeholder="输入关键字搜索...">
+           <button type="submit" class="fontuetop 
+icon-search222 submit-search">
+           
+           </button>
+        </form>
+       </li>
+     </ul>
+    </div>
+   </div> 
+</div> 
+
+<div id="side_film" class="side_film"></div>
+
+
+<div class="container-fluid home_event">
+  <div class="hero_brand headSlider col-md-12 ">
+   <div class="uetop_slider " id="intro">    
+     <!--轮播模式和视差模式手机端开启swiper--> 
+<div class="fadeOut_mb video-list swiper-container   lazyload_scope clearfix"  >  
+ <div class="swiper-wrapper">
+     
+      <div class="swiper-slide" >       
+      <div class="item part-item-1" > 
+               <div class="part_3--inner">
+                 <div class="part3_text_wrap">
+                   <div class="part_3-text">
+                     
+                     <h2 class="part_3-title settings-part_3_1_title_color">
+                       副标题
+                     </h2>
+                     
+                     
+                    <div class="part_3-desc settings-part_3_1_desc_color"> 2020 Our Fashion Show</div>
+                     
+                   
+                   <a class="part_3-link  settings-part_3_1_link_color settings-part_3_1_linkHover_color" href="/products" target="_blank">
+                       WOMEN                   
+                        </a> 
+                                             
+                      
+                      <a class="part_3-link  settings-part_3_1_link_color settings-part_3_1_linkHover_color" href="/products" target="_blank">                     
+                       SHOP NOW
+                        </a> 
+                     
+                     
+                   </div>
+                 </div>
+               </div>
+             <div class="part_3-img-1 part_3-img bg-img"  >
+            
+            
+            
+               </div>
+               
+              
+             <div class="swiper-button-prev index_prev div_pc"></div>
+            <div class="swiper-button-next index_next div_pc"></div>
+        
+            </div></div>
+            
+            
+            
+            <div class=" swiper-slide " >
+   <div class="item part-item-2" > 
+                <div class="part_3--inner">
+                  <div class="part3_text_wrap">
+                    <div class="part_3-text">
+                      
+                      <h2 class="part_3-title settings-part_3_2_title_color">
+                        副标题
+                      </h2>
+                      
+                      
+                       <div class="part_3-desc settings-part_3_2_desc_color">
+                          2020 Our Fashion Show
+                       </div>
+                      
+                      
+                     <a class="part_3-link  settings-part_3_2_link_color settings-part_3_2_linkHover_color" href="/products" target="_blank">
+                       WOMEN
+                     </a>
+                       
+                                                  
+                      <a class="part_3-link  settings-part_3_2_link_color settings-part_3_2_linkHover_color" href="/products" target="_blank">
+                        SHOP NOW
+                     </a>
+                      
+                    </div>
+                  </div>
+                </div>
+             <div class="part_3-img-2 part_3-img bg-img2" >
+             
+            
+             <video class="swiper-video js-video" id="swiper_video2" webkit-playsinline playsinline x5-playsinline x-webkit-airplay="allow" muted  loop="loop" preload="auto" autoplay="autoplay">
+             <source src="//asset.ibanquan.com/file/569da15faaba8c5fd10001af" type="video/mp4">
+             您的浏览器不支持video标签
+             </video>
+            
+            
+                </div>
+              
+         
+         <div class="swiper-button-prev index_prev div_pc"></div>
+          <div class="swiper-button-next index_next div_pc"></div>
+        
+              </div>
+              </div> 
+                     
+            
+            <div class="swiper-slide" >
+             <div class="item part-item-3" > 
+               <div class="part_3--inner">
+                 <div class="part3_text_wrap">
+                   <div class="part_3-text">
+                     
+                     <h2 class="part_3-title settings-part_3_3_title_color">
+                      副标题
+                     </h2>
+                     
+                     
+                       <div class="part_3-desc settings-part_3_3_desc_color">
+                       2020 Our Fashion Show
+                     </div>
+                     
+                      
+                     <a class="part_3-link  settings-part_3_3_link_color settings-part_3_3_linkHover_color" href="/products" target="_blank">
+                       WOMEN
+                        </a>
+                       
+                      
+                     <a class="part_3-link  settings-part_3_3_link_color settings-part_3_3_linkHover_color" href="/products" target="_blank">
+                       SHOP NOW
+                    </a>
+                     
+                   </div>
+                 </div>
+               </div>
+               <div class="part_3-img-3 part_3-img bg-img3"> 
+             
+            
+            
+               </div>
+               
+          
+         <div class="swiper-button-prev index_prev div_pc"></div>
+          <div class="swiper-button-next index_next div_pc"></div>
+        
+            </div>
+            </div> 
+                       
+                          
+                           
+                          
+                      
+    </div>  
+  
+     <!--轮播模式下左右箭头和分页--> 
+   <div class="dot_pagination_top swiper-pagination"></div>
+   
+      
+</div>
+
+ 
+  </div>
+ </div>
+  
+ <div class="index_second ">
+   <div class="col-md-12 "> 
+   
+
+
+  <!--引导图两排混排--> 
+ <div  class="indexSection1 border_section">  
+  <div  class="section_width indexSection1_width"> 
+     
+    <div  class=" home_f4"   >
+    <div class="do-element-media pic_show ">     
+     <ul class="do-element-media-ul video-list lazyload_scope">     
+       <div class="index_tw_left clearfix">
+       
+       <li  class="do-li do-num1"  > 
+        <a  href="/products"  target="_blank">
+         <div class="pic_show-each pic_1">
+           <div class="do-imag"  >
+             <div class="mhmask"></div>
+             <div  class="do-imag-conter">
+              
+           <img  class="lazyload" src="./img/blank.gif" data-src="./image/index_pic_1.jpeg" >
+          
+             </div>
+           </div>
+            
+           <div class="do-text-wrap" >
+             <div class="do-text-inner">
+               <div class="do-text">
+                 <h2>2020 Fashion Display</h2>
+                 <div class="do-text-des">Test Test Test</div>
+                 <span>SHOP NOW</span>
+               </div>
+              </div>
+           </div>
+                              
+          </div>
+         </a>
+       </li>
+     
+          
+              
+     <li  class="do-li do-num2" > 
+      <a  href="/products"  target="_blank">
+        <div class="pic_show-each pic_2">      
+          <div class="do-imag" >
+            <div class="mhmask"></div>
+            <div class="do-imag-conter">
+              
+           <img  class="lazyload" src="./img/blank.gif" data-src="./image/03824_autumnskyinnewyork_3840x2400.jpg" >
+          
+            </div>
+          </div>
+       
+          <div class="do-text-wrap" >
+          <div class="do-text-inner">
+            <div class="do-text">
+              <h2>2020 Fashion Display</h2>
+              <div class="do-text-des">A Taste Of Victory</div>
+              <span>SHOP NOW</span>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+       </a>
+      </li>
+     
+     
+     
+    
+          
+                 
+       </div>             
+     <div class="index_tw_right clearfix">      
+     
+     <li  class="do-li do-num5" > 
+      <a  href="/products" target="_blank">
+       <div class="pic_show-each pic_5">        
+     <div class="do-imag" >
+         <div class="mhmask"></div>
+         <div class="do-imag-conter">
+          
+           <img  class="lazyload" src="./img/blank.gif" data-src="./image/03820_emeraldbay_3840x2400.jpg" >
+          
+         </div>
+         </div>
+     
+         <div class="do-text-wrap" >
+           <div class="do-text-inner">
+             <div class="do-text">
+               <h2>2020 Fashion Display</h2>
+               <div class="do-text-des">Voya Design</div>
+               <span>SHOP NOW</span>
+              </div>
+              </div>
+            </div>
+           
+        </div>
+       </a>
+      </li> 
+     
+          
+   
+    <li class="do-li do-num6"> 
+     <a  href="/products" target="_blank">
+       <div class="pic_show-each pic_6">       
+    <div class="do-imag" >
+      <div class="mhmask"></div>
+         <div class="do-imag-conter">
+           
+           <img  class="lazyload" src="./img/blank.gif" data-src="./image/03868_thorswell_3840x2400.jpg" >
+          
+      </div>
+      </div>
+       
+         <div class="do-text-wrap" >
+           <div class="do-text-inner">
+             <div class="do-text">
+               <h2>2020 Fashion Display</h2>
+               <div class="do-text-des">In The Wild</div>
+               <span>SHOP NOW</span>
+             </div>
+           </div>
+         </div>
+       
+     </div>
+   </a>
+  </li> 
+  
+        
+             
+                   
+   </div>                      
+    </ul>
+   </div>
+  </div>  
+</div>
+</div>
+   
+
+   
+   </div>
+  </div>   
+   
+  
+   <div class="index_second ">
+    <div class="col-md-12 ">  
+     <div class="indexSection2 border_section">   
+ <div class="section_width indexSection2_width clearfix   ">      
+  <div class="title_box justhidden clearfix" >
+     <h3 class="heading product-heading settings-proTitle_color">2020春夏新片</h3>
+      <div class="big-title_text">现代女性在快节奏的生活中扮演着多变的角色，希望无论何时何地，都可以在该系列中找到适合你此刻想要的服装。</div>
+  </div>       
+  <div  class="index-prolistsecond justhidden clearfix">    
+  
+  
+  
+  
+  <div  class="index-display-list swiper-container    clearfix"   > 
+  <div class="swiper-wrapper">
+ 
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000200"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e46914c0f525c003d5d2d4a/s_w800.jpeg?v=1581683020" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000200"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e46914c0f525c002c5d2c81/s_w800.jpeg?v=1581683020" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000200"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000201"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691580f525c002c5d2ca2/s_w800.jpeg?v=1581683020" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000201"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691580f525c002c5d2ca8/s_w800.jpeg?v=1581683020" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000201"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000202"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691625564ea000a45f6e8/s_w800.jpeg?v=1581683021" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000202"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691625564ea000a45f6e2/s_w800.jpeg?v=1581683020" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000202"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000203"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e46916c0f525c000a5d2ba2/s_w800.jpeg?v=1581683021" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000203"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e46916c0f525c000a5d2b93/s_w800.jpeg?v=1581683021" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000203"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000204"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691755564ea000a45f703/s_w800.jpeg?v=1581683022" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000204"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691765564ea000a45f718/s_w800.jpeg?v=1581683021" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000204"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000205"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691805564ea002445f76e/s_w800.jpeg?v=1581683022" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000205"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691805564ea002445f769/s_w800.jpeg?v=1581683022" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000205"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000206"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691a70f525c003d5d2d54/s_w800.jpeg?v=1581683111" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000206"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691a80f525c002c5d2cb2/s_w800.jpeg?v=1581683112" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000206"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000207"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691af5564ea002445f78b/s_w800.jpeg?v=1581683112" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000207"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691af5564ea002445f791/s_w800.jpeg?v=1581683111" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000207"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000208"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691ba0f525c001b5d2c82/s_w800.jpeg?v=1581683112" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000208"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691ba0f525c001b5d2c7c/s_w800.jpeg?v=1581683112" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000208"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000209"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691c30f525c001b5d2c94/s_w800.jpeg?v=1581683113" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000209"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691c40f525c001b5d2ca5/s_w800.jpeg?v=1581683112" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000209"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000210"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691cc5564ea003145f7bf/s_w800.jpeg?v=1581683113" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000210"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691cd5564ea003145f7d1/s_w800.jpeg?v=1581683113" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000210"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+   
+  <div class="swiper-slide index-display-item justhidden" >              
+   <div class="grid-item--box "  >       
+     <div class="grid-item-a--wrap">
+      
+      <!--折扣标签--> 
+      
+                 
+      <div class="grid-item-a" title="白色蕾丝印花中裙">             
+      
+        <!--电脑端图片-->
+        <a class="grid-item-a grid-item-first img_bg_color  resize--line" href="/products/p000211"  title="白色蕾丝印花中裙" >
+        <img class="grid-item-a-img grid-item-a-img-first swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691d55564ea000a45f72b/s_w800.jpeg?v=1581683113" alt="白色蕾丝印花中裙">
+        </a>            
+        
+        
+         <!--鼠标经过换图--> 
+        <a class="grid-item-a grid-item-a-hover  resize--line" href="/products/p000211"  title="白色蕾丝印花中裙" >
+       <img class="grid-item-a-img swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/image/5e4691d65564ea000a45f747/s_w800.jpeg?v=1581683113" alt="白色蕾丝印花中裙"> </a>
+        
+        
+                     
+           
+      </div>
+     
+    </div>       
+   <a  href="/products/p000211"  title="白色蕾丝印花中裙">
+     <div class="prolist-text-wrap">
+       <div class="prolist-text-inner">
+        <div class="prolist-text-middle"> 
+         <div class="grid-item-text">
+                
+          <div class="grid-item-text-name settings-proTitle_color">白色蕾丝印花中裙</div>    
+           
+       </div>       
+      <div class="grid-item-buy  clearfix">
+      <span class="grid-item-buy-price settings-proPrice_color ">￥7880</span>
+      
+      </div>
+     </div>
+    </div>
+   </div>
+</a>
+</div>
+</div>
+    
+</div> 
+
+    <div class="swiper-button-prev index_prev div_pc"></div>
+    <div class="swiper-button-next index_next div_pc"></div>
+    <div class="swiper-scrollbar div_wap"></div>
+      
+        
+ 
+    
+    
+    
+       </div>
+   </div>
+        
+       <div class="button_inner">
+       <a href="/products" class="newbutton button--animated ">
+        <span class="button__h-borders">查看全部</span>
+      </a>
+     </div>
+     
+</div>
+</div>   
+ 
+    </div>
+    </div>
+ 
+
+     <section class="home__section">
+    <div class="index_bigpic1_box">  
+     <div class="index_bigpic1 img_bg_color"> 
+      </div>
+    </div>
+  </section>
+  
+  
+     <!--首页专辑一--> 
+  <section class="home__section">
+     <h3 class="heading settings-proTitle_color justhidden">
+       2020 Fashion Display
+      </h3>
+  <div class="home__carousel ">
+    <div class="variable slider justhidden ">  
+         
+      <div class="image">
+       <a  href="javascript:void(0);" >  
+    <img src="//asset.ibanquan.com/s/66633/0/album1_1_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+      </div>
+  
+         
+           
+      <div class="image" >
+   <a  href="javascript:void(0);" > 
+    <img src="//asset.ibanquan.com/s/66633/0/album1_2_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+           
+         
+    
+     <div class="image"  >
+   <a  href="javascript:void(0);" > 
+     <img src="//asset.ibanquan.com/s/66633/0/album1_3_img/s_w960.jpg?v=1587615612_1587615612" >
+       </a>
+    </div>
+      
+         
+   
+      <div class="image"  >
+    <a  href="javascript:void(0);" > 
+    <img src="//asset.ibanquan.com/s/66633/0/album1_4_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+      </div>
+   
+         
+           
+      <div class="image" >
+      <a  href="javascript:void(0);" >              
+     <img src="//asset.ibanquan.com/s/66633/0/album1_5_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+           
+         
+    
+    <div class="image" >
+    <a  href="javascript:void(0);" > 
+<img src="//asset.ibanquan.com/s/66633/0/album1_6_img/s_w960.jpg?v=1587615612_1587615612" >
+      </a>
+    </div>
+            
+         
+     
+      <div class="image" >
+    <a  href="javascript:void(0);" > 
+    <img src="//asset.ibanquan.com/s/66633/0/album1_7_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+                     
+      
+      <div class="image" >        
+     <a  href="javascript:void(0);" >        
+    <img src="//asset.ibanquan.com/s/66633/0/album1_8_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+     
+       
+         
+       
+        
+      
+    
+      
+     
+      
+     
+      </div>
+      </div> 
+      
+      <a class="newbutton button--animated " href="/blogs/b000005" >
+        <span class="button__h-borders">查看专辑</span>
+      </a>
+    
+   </section> 
+ 
+
+
+     <!--首页专辑二-->
+   <section class="home__section">
+      <h3 class="heading settings-proTitle_color justhidden">
+       2020 Fashion Display
+      </h3>
+<div class="home__carousel ">
+<div class="variable slider justhidden" >
+    
+   
+      <div class="image">
+   <a  href="javascript:void(0);" > 
+     <img src="//asset.ibanquan.com/s/66633/0/album2_1_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+      </div>
+   
+  
+   
+      <div class="image" >
+   <a  href="javascript:void(0);" >        
+     <img src="//asset.ibanquan.com/s/66633/0/album2_2_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+   
+  
+   
+     <div class="image"  >
+    <a  href="javascript:void(0);" >      
+     <img src="//asset.ibanquan.com/s/66633/0/album2_3_img/s_w960.jpg?v=1587615612_1587615612" >
+       </a>
+    </div>
+    
+  
+   
+      <div class="image"  >
+     <a  href="javascript:void(0);" >        
+     <img src="//asset.ibanquan.com/s/66633/0/album2_4_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+      </div>
+   
+  
+   
+      <div class="image" >
+    <a  href="javascript:void(0);" >       
+      <img src="//asset.ibanquan.com/s/66633/0/album2_5_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+   
+  
+   
+    <div class="image" >
+   <a  href="javascript:void(0);" >      
+ <img src="//asset.ibanquan.com/s/66633/0/album2_6_img/s_w960.jpg?v=1587615612_1587615612" >
+      </a>
+     </div>
+   
+  
+   
+      <div class="image" >
+   <a  href="javascript:void(0);" >        
+    <img src="//asset.ibanquan.com/s/66633/0/album2_7_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+   
+  
+   
+      <div class="image" >
+    <a  href="javascript:void(0);" >       
+    <img src="//asset.ibanquan.com/s/66633/0/album2_8_img/s_w960.jpg?v=1587615612_1587615612" >
+        </a>
+    </div>
+   
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  </div>
+  </div> 
+  
+     <a  class="newbutton button--animated " href="/blogs/b000005" >
+        <span class="button__h-borders">查看专辑</span>
+      </a>
+      
+  </section>
+ 
+
+  
+   
+<section class="home__section clearfix">       
+   <h3 class="heading settings-proTitle_color">最新动态</h3>   
+  <div  class="index-news swiper-container  clearfix"   > 
+  <div class="swiper-wrapper">   
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+      <img class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img1/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+    
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img  class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img2/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+ 
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img3/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+   
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img  class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img4/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+     
+    
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img  class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img5/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+     
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img  class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img6/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+    
+   
+   
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img7/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+    
+    
+    
+  <div class="newsitem swiper-slide justhidden" >              
+   <div class="news-item--box "  >
+   <a  href="/posts" target="_blank"> 
+    <div class="news-item-wrap">
+      <div class="grid-item-a" >       
+    <img class="swiper-lazy" src="./img/blank.gif" data-src="//asset.ibanquan.com/s/66633/0/index_news_img8/s_w960.jpg?v=1587615612_1587615612" >
+      </div>
+    </div>       
+     <div class="news-text-wrap">
+      <div class="news-item-text">      
+      <div class="news-text-name settings-proTitle_color">PANDOLA  X 明星</div>             
+     </div>       
+   </div>
+</a>
+</div>
+</div>     
+    
+       </div>
+    <div class="swiper-button-prev index_prev"></div>
+    <div class="swiper-button-next index_next"></div>
+   </div>
+   
+    <div class="button_inner">
+     <a href="/posts" class="newbutton button--animated ">
+      <span class="button__h-borders">查看所有</span>
+      </a>
+     </div>
+   
+</section>
+  
+    
+   
+</div>  
+ <!--侧边导航-->
+<div id="left_bar" class="left_all_page">
+     <div id="left_bar_inner">
+        <div id="left_bar_wrap">
+           <div id="logo">
+             <div class="logo_inner">
+              <a href="/">
+                
+                <img src="//asset.ibanquan.com/s/66633/0/logo/s_w600.jpg?v=1587615612_1587615612"  alt="Fashion Display"/>
+                
+                  
+              </a>
+             </div>
+             </div>       
+            <ul id="main_menu" class="footer-nav  mbFooter_accordion">
+            
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">时装发布会</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://pandola.youhaovip.com/blogs/b000005"  >
+                    <span class="text2">2020春夏</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://pandola.youhaovip.com/blogs/b000006"  >
+                    <span class="text2">2019秋冬</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://pandola.youhaovip.com/blogs/b000004"  >
+                    <span class="text2">2018春夏</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="/pages/g000052" >
+                  <span class="text1">广告大片</span>
+                </a>
+              </div>                                             
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">产品系列</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/vendors/v000013"  >
+                    <span class="text2">全部商品</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/vendors/v000013"  >
+                    <span class="text2">女士</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/vendors/v000007"  >
+                    <span class="text2">包包</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/vendors/v000007"  >
+                    <span class="text2">鞋类</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/vendors/v000007"  >
+                    <span class="text2">热卖</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">专题大片</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/pages/g000037"  >
+                    <span class="text2">CAMPAIGN1</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/pages/g000038"  >
+                    <span class="text2">CAMPAIGN2</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/pages/g000039"  >
+                    <span class="text2">CAMPAIGN3</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/pages/g000040"  >
+                    <span class="text2">CAMPAIGN4</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">时尚聚焦</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/posts"  >
+                    <span class="text2">ALL ITEMS</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/posts?dir_id=31571"  >
+                    <span class="text2">FASHION</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/posts?dir_id=31572"  >
+                    <span class="text2">ART</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/posts?dir_id=31573"  >
+                    <span class="text2">CAMPAIGN</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="/posts?dir_id=31574"  >
+                    <span class="text2">PRESS</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">客户案例</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://www.granduca.com"   target="_blank">
+                    <span class="text2">女装GRANDUCA</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://www.dormkidscouture.com"   target="_blank">
+                    <span class="text2">童装礼服dormkidscouture</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://www.prosbych.com/"  >
+                    <span class="text2">潮牌Prosbych</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://yueshangri.wodavip.com/"   target="_blank">
+                    <span class="text2">艺术品yueshangri</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://reindeelusion.com/"   target="_blank">
+                    <span class="text2">男装Reindeelusion</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://www.opi-brand.com"   target="_blank">
+                    <span class="text2">男装opi-brand</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://wangmugongsong.wodavip.com"   target="_blank">
+                    <span class="text2">饰品SOUNDERWANG</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://www.dilusheying.com/"   target="_blank">
+                    <span class="text2">摄影DILUSHEYING</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://17397902827.wodavip.com/"   target="_blank">
+                    <span class="text2">时装HAIZHENWANG</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://www.junweilin.com/"   target="_blank">
+                    <span class="text2">男装JUNWEILIN</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+            <li  class="footer-nav-list left_first_li left_li clearfix"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">更多主题</span>
+                </a>
+              </div>                                             
+              
+               <ul class="footer_submenu clearfix">
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://zetianwu.wodavip.com/"   target="_blank">
+                    <span class="text2">武则天主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://athena.youhaovip.com"   target="_blank">
+                    <span class="text2">雅典娜主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://venuss.youhaovip.com/"   target="_blank">
+                    <span class="text2">维纳斯主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://artemis.youhaovip.com/"   target="_blank">
+                    <span class="text2">阿尔忒弥斯主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="http://ares.youhaovip.com"   target="_blank">
+                    <span class="text2">阿瑞斯主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://apollo.wodavip.com/"   target="_blank">
+                    <span class="text2">阿波罗主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://muses.wodavip.com"   target="_blank">
+                    <span class="text2">缪斯主题</span>
+                  </a>
+                </li>
+                            
+                <li class="footer-sub-nav left_second_li clearfix">
+                  <a class="footer-nav-list-each-link " href="https://nishang.wodavip.com"   target="_blank">
+                    <span class="text2">霓裳主题</span>
+                  </a>
+                </li>
+                </ul>
+                                         
+           </li>
+          
+        </ul>                      
+        <ul id="bottom_menu">
+       
+            <li  class="footer-nav-list left_li left_first_li"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="/pages/g000049" >
+                  <span class="text1">关于我们</span>
+                </a>
+              </div>                                 
+                          
+           </li>
+          
+            <li  class="footer-nav-list left_li left_first_li"> 
+              <div class="footer-nav-list-each footer-nav-active  footer-nav-list-each--title">
+                <a class="footer-link " href="javascript:void(0);" >
+                  <span class="text1">联系我们</span>
+                </a>
+              </div>                                 
+                          
+           </li>
+          
+          <li >
+        <a id="customer-item4" class="nav-account-right settings-nav_color settings-navLinkHover_color" href="/account/register">
+        </a>              
+        </li>
+        <li class="social_left" style="width:80%;margin-top: 15px;font-family:CourierNew,Courier New,Courier New,monospace, Helvetica, Arial, sans-serif;">            
+              
+    <a class="fontuetop icon-sina-weibo icon" href="https://weibo.com/"  target="_blank"    ></a>
+           
+             
+    <a id="show_weixin" href="javascript:void(0);" class="fontuetop icon-wechat icon" title="微信客服"> </a>
+   
+             
+    <a  href="https://tmall.com/"  target="_blank" class="fontuetop icon-tmall icon " title="tmall"></a>
+   
+   
+   
+    <a  href="https://instagram.com/"  target="_blank" class="fontuetop icon-instagram_empty icon " title="instagram"></a>
+    
+    
+    
+    
+       </li>
+       </ul>
+      </div>
+   </div>
+   </div> 
+<div id="weixin_service"  class="weixin_sercice">
+ <img src="//asset.ibanquan.com/s/66633/0/weixin_img?v=1587615612_1587615612" alt="微信二维码">
+ </div> 
+
+<div id="faq_mask" class="faq_mask" ></div>
+<style>
+ .logo_inner{
+   padding:50px 40px;
+ } 
+    
+#logo img{
+  width:78%;
+}  
+  
+  
+#left_bar{
+  display:none;
+  z-index:12;
+  background-color:#ffffff;
+}
+
+@media (min-width: 768px){
+  body,.showoptions_body{
+    padding-left:240px;  
+    padding-top: 0px;
+  }
+  #left_bar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100%;
+    display:block;
+  }}
+
+
+
+#left_bar_inner{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+
+#main_menu{
+  width: 200px;
+  color:#000;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+#main_menu  li{
+  width:100%;
+  line-height:26px;
+  padding-left:40px;
+}
+
+#main_menu li a{
+  -webkit-transition: all 500ms cubic-bezier(.39,.575,.565,1);
+-moz-transition: all 500ms cubic-bezier(.39,.575,.565,1);
+-ms-transition: all 500ms cubic-bezier(.39,.575,.565,1);
+-o-transition: all 500ms cubic-bezier(.39,.575,.565,1);
+transition: all 500ms cubic-bezier(.39,.575,.565,1);
+text-decoration: none!important;
+  width:100%;
+  line-height:26px;
+  display:block;
+  font-size:12px;color:#141414;
+  letter-spacing:0.5px;
+}
+
+#main_menu li a .text1,#main_menu li a .text2,#bottom_menu li a .text1{
+  position:relative;
+}  
+  
+#main_menu li.left_first_li a .text1:after,#main_menu li.left_second_li a .text2:after,#bottom_menu li.left_first_li a .text1:after {
+    -webkit-transition: width 0.2s ease;
+    transition: width 0.2s ease;
+    content: ' ';
+    height: 1px;
+    max-width: 100%;
+    width: 0;
+    background-color: #141414;
+    position: absolute;
+    display: block;
+    bottom: -2px;
+    left: 0;
+}
+ #main_menu li.left_second_li a .text2:after,#bottom_menu li.left_first_li a .text1:after {
+    background-color:#969696;
+} 
+  
+  
+#main_menu  li.left_first_li:hover  a .text1:after,#main_menu  li.left_second_li:hover  a .text2:after,#bottom_menu  li.left_first_li:hover  a .text1:after{ 
+    width: 100%;
+ 
+}
+ 
+#main_menu  li.left_first_li.open a .text1:after {
+  width:0;
+} 
+  
+  
+#main_menu > li > ul{ margin:0 ; padding:0 ;list-style:none; display:none;}
+
+#main_menu > li.hover > ul{ display:block;}
+
+#main_menu > li > ul > li{
+  width:100%;
+  line-height:22px;
+  padding-left:10px;
+}
+
+#main_menu > li > ul > li > a{
+  width:100%;
+  height:22px;
+  display:block;
+  font-size:12px;color:#969696; text-decoration:none;line-height:22px;
+}
+  
+
+ 
+
+#bottom_menu{
+  position:absolute;
+  left:0;
+  bottom:40px;
+  color:#969696;
+  margin:0;
+  padding:0;
+  list-style:none;
+  background-color:#ffffff;
+}
+
+@media (max-height: 535px){
+  #bottom_menu{
+    top:400px;
+  }
+  
+}
+
+
+#bottom_menu li{
+  width:100%;
+  line-height:22px;
+  padding-left:40px;
+}
+#bottom_menu li a{color:#969696; text-decoration:none;font-size: 12px;letter-spacing:0.5px;
+
+}
+
+#bottom_menu li a.icon{color:#969696;font-size:16px;}
+
+#bottom_menu li a.icon:hover a{opacity:0.8;}
+
+   
+#nav_menu > .nav_top_menu{
+  width:100%;
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:block;
+}
+#nav_menu > .nav_top_menu >li{
+  width:100%;
+  line-height:50px;
+  border-bottom:1px solid #dddddd;
+}
+#nav_menu  .nav_top_menu li  a{
+  padding-left:20px;
+  line-height:50px;
+  font-size:13px;
+  color:#000;
+}
+
+#nav_menu > .nav_top_menu >li.hover > a{text-decoration: underline;}
+
+
+#nav_menu > .nav_top_menu > li > ul{ list-style:none; margin:0; padding:0; display: none;}
+
+#nav_menu > .nav_top_menu > li.hover > ul{display: block;}
+
+#nav_menu > .nav_top_menu > li > ul > li {
+  width:100%;
+  line-height:50px;
+  border-top:1px solid #dddddd;
+}
+#nav_menu > .nav_top_menu > li > ul > li > a{
+  padding-left:40px;
+  line-height:50px;
+  font-size:12px;
+  color:#717275;
+}
+
+#nav_menu > .nav_top_menu >li > ul > li.hover > a{text-decoration: underline;}
+
+.nav_bottom_menu{
+  display:block;
+  color:#717275;
+  margin-top:30px;
+  margin-bottom:100px;
+  padding:0;
+  list-style:none;
+}
+.nav_bottom_menu li{
+  width:100%;
+  line-height:20px;
+  height:20px;
+  padding-left:20px;
+}
+.nav_bottom_menu li a{color:#717275; text-decoration:none; font-size:12px;}
+
+
+    
+  
+@media (max-width:768px){
+  #bottom_menu li{
+  width:100%;
+  line-height:20px;
+  height: 20px;
+  padding-left:40px;
+} 
+  
+#main_menu li.left_first_li a .text1:after,#main_menu li.left_second_li a .text2:after,#bottom_menu li.left_first_li a .text1:after,#main_menu  li.left_first_li:hover  a .text1:after,#main_menu  li.left_second_li:hover  a .text2:after,#bottom_menu  li.left_first_li:hover  a .text1:after {
+    width: 0;
+}  
+  
+#main_menu > li > ul > li{
+  width:50%;float:left;padding:0;
+} 
+    
+#main_menu > li > ul > li a{
+height:28px;
+} 
+         
+#main_menu li a{
+  font-size:14px;
+}  
+    
+ #left_bar{
+  display:block;
+  width:100%;
+  height:100%;
+  position:fixed;
+  left:0;
+  top:50px;
+  filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+   visibility:hidden;
+  z-index:55;
+  overflow:auto;
+  display:block;
+  border-right: 1px solid #dddddd;
+-webkit-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -moz-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -ms-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -o-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    transition: all 200ms cubic-bezier(.39,.575,.565,1);
+} 
+  
+  
+  #left_bar_inner{
+    overflow:hidden;
+  }
+   #left_bar_inner{
+    overflow-y:scroll;
+   -webkit-overflow-scrolling: touch;
+  }
+
+   #left_bar_wrap{
+  padding-bottom:100px;
+  }
+  
+
+#main_menu{
+  width:100%;
+}  
+  
+ #main_menu >li {
+    line-height: 36px;
+     
+     
+    border-bottom:var(--1px) solid rgba(0,0,0,.2);
+    
+    padding-left: 40px;
+}
+   #main_menu >li:first-child{
+   
+     
+    border-top:var(--1px) solid rgba(0,0,0,.2);
+      
+   }
+ #main_menu > li > ul{
+   margin-bottom:20px;
+ } 
+  
+ #left_bar #logo{
+   display:none;
+ }
+  
+ #left_bar{
+   display:block;
+ }  
+  
+  
+.nav_bottom_menu li a.icon {
+    font-size: 18px;margin-right:15px;
+
+}
+  
+.side_active  #left_bar {
+ top:50px;
+  filter: alpha(opacity=98);
+    -moz-opacity:.98;
+    -khtml-opacity:.98;
+    opacity: .98;
+  visibility:visible;
+  -webkit-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -moz-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -ms-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    -o-transition: all 200ms cubic-bezier(.39,.575,.565,1);
+    transition: all 200ms cubic-bezier(.39,.575,.565,1);
+}
+   
+#main_menu{
+  top:0;position:relative;
+}
+
+  
+#bottom_menu{
+margin:30px 0;
+  position:relative;
+  bottom:0;
+}
+  #main_menu li a{
+ height:40px;line-height:40px;   
+  }
+  
+ 
+  
+}
+
+
+.faq_mask {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #000;
+opacity: 0.4;
+filter: alpha(opacity=40);
+display: none;
+z-index: 9997;
+}
+
+.faq_box {
+position: fixed;
+top: 50%;
+left: 50%;
+margin-top: -300px;
+margin-left: -315px;
+width: 630px;
+height: 470px;
+overflow:hidden;
+display: none;
+z-index: 9998;
+}
+
+.close_btn {
+position: absolute;
+display: block;
+z-index: 100;
+font-size: 30px;
+top: 10px;
+right: 15px;
+cursor: pointer;
+transition: all 0.5s;
+-webkit-transition: all 0.5s;
+color: #333;
+}
+
+
+.weixin_sercice{
+position: fixed;
+top: 50%;
+left: 50%;
+padding:10px 0 20px;
+background:#fff;
+text-align:center;
+color:#333;
+-moz-border-radius: 10px; 
+-webkit-border-radius: 10px; 
+border-radius: 10px; 
+margin-top: -180px;
+margin-left: -120px;
+width: 240px;
+height: auto;
+display: none;
+z-index: 9999;
+}
+.weixin_sercice img{
+width:220px;
+height:auto;
+}
+
+
+
+
+.weixin_sercice span{
+width:100%;
+font-size:15px;
+line-height:1.2;
+display:inline-block;
+*display: inline;
+*zoom: 1;
+text-align:center;
+}
+
+</style>
+
+  <script>
+  $(document).ready(function(){
+    //关闭事件
+    var weixinOpen = function(){
+      $("#faq_mask").fadeIn();
+      $("#weixin_service").fadeIn();
+    }
+    var weixinClose = function(){
+      $("#weixin_service").fadeOut();
+      $("#faq_mask").fadeOut();
+    }
+     var FaqOpen = function(){
+        $("#faq_mask").fadeIn();
+      $("#faq_box").fadeIn();
+    }
+    var FaqClose = function(){
+       $("#faq_mask").fadeOut();
+      $("#faq_box").fadeOut();
+    }
+    
+   
+    //首页反馈按钮事件
+    $("#show_weixin").click(function(){
+      weixinOpen();
+    });
+      $("#show_weixin_mb").click(function(){
+      weixinOpen();
+    });
+          
+     $("#faq_mask_btn").click(function(){
+     FaqOpen();
+    });    
+ 
+    
+    $("#faq_mask").click(function(){
+      weixinClose(); FaqClose();
+    });
+       
+    $("#close_btn").click(function(){
+      FaqClose();
+    });
+  });
+</script>
+
+<script src='//asset.ibanquan.com/s/66633/0/slick.min.js?v=1587615612_1587615612' type='text/javascript'></script>
+
+
+
+
+<style>
+ 
+.notice-swiper.swiper-container{
+position:fixed; top:0; left: 0; width: 100%; height: 48px; z-index: 111; background:#f5f5f5; line-height: 48px; text-align: center; letter-spacing: 0.025em;  transition: top .3s; overflow: hidden;
+}
+.notice-swiper.swiper-container a{
+ color:#171717; 
+}
+@media (min-width: 768px){
+body,#logo{
+  padding-top:48px!important;
+}}
+@media screen and (max-width: 767px) {
+  .notice-swiper.swiper-container{
+    bottom:0;top:auto;
+  }
+ .notice-swiper.swiper-container{
+  line-height:40px;height:40px;
+}  }
+
+#go_top-go{
+  display:none!important;
+}
+  
+.index_second{
+ z-index:2;
+} 
+@media (min-width: 768px){  
+.nav_right{
+  display:none;
+}}    
+@media (max-width: 767px){
+.copyright{
+margin-top:100px!important;
+}}
+    
+</style> 
+  <script>
+    $(document).on('ready', function() {   
+      $(".variable").slick({
+        lazyLoad: 'ondemand',
+        dots:false,
+        variableWidth: true,
+        slidesToShow: 3,
+        touchThreshold:30,
+        responsive: [
+        {
+        breakpoint: 768,
+        settings: {
+        slidesToShow:1
+      }
+    }
+  ]
+      });
+
+    });
+</script>
+
+ <!--轮播模式和视差模式手机端开启swiper-->
+  
+   <script>     
+   var videolist = $(".video-list").find("video.js-video");
+     if($(".fadeOut_mb .swiper-slide").size() >= 2){ 
+     new Swiper('.fadeOut_mb', {
+      
+       
+      speed:600,
+       loop: true,
+       
+        autoplay: {
+        delay: 5000,
+        disableOnInteraction:true,
+      },
+        
+        pagination: {
+        el: '.dot_pagination_top',
+      },
+       navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+        breakpoints: {
+       768: {          
+       slidesPerView:1,                  
+       }
+      },
+      on:{
+      init: function(){
+      for(var k = 0 ;k<videolist.length;k++){
+      videolist[k].play();
+      }
+      }
+     } 
+ 
+    }) }
+      else{        
+       new Swiper('.fadeOut_mb', {
+      
+       
+       speed:600,
+       navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+        breakpoints: {
+       768: {          
+       slidesPerView:1,                  
+       }
+      },
+       on:{
+      init: function(){
+      for(var k = 0 ;k<videolist.length;k++){
+      videolist[k].play();
+      }
+      }
+     } 
+ 
+    }) 
+    }       
+     
+     
+</script>
+ 
+
+
+
+  <script>
+       new Swiper('.index-display-list.swiper-container', { 
+       simulateTouch: false,
+       observer:true,
+       observeParents:true,
+       lazy: {
+       loadPrevNext: true,
+       },
+       scrollbar: {
+       el: '.swiper-scrollbar',
+       hide: true,
+       dragSize: 100,
+       },
+       autoplay: {
+       delay: false === true ? 4000 : 500000,
+       },
+       speed: 500,
+       
+                  
+       slidesPerView: 2.8,    
+       
+       
+                                          
+       watchOverflow: true,
+       spaceBetween: 0, 
+       navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+       },
+       breakpoints: {
+       1280: {
+       slidesPerView: 3,
+       spaceBetween:0,
+       },
+       767: {
+       
+       slidesOffsetBefore:20,
+       slidesOffsetAfter:20,
+       
+       slidesPerView:1.4,
+       spaceBetween:20,
+       
+                             
+       }
+    }
+  }); 
+</script>
+
+
+
+
+ 
+  <script>
+       new Swiper('.index-news.swiper-container', {
+       lazy: {
+       loadPrevNext: true,
+       },
+       slidesPerColumn: 1,
+       scrollbar: {
+       el: '.swiper-scrollbar',
+       hide: true,
+       dragSize: 100,
+       },
+       autoplay: {
+       delay: false === true ? 4000 : 500000,
+       },
+       speed: 500,
+       simulateTouch: false,
+       preventClicks : false,
+       observer:true,
+       observeParents:true,        
+                  
+       slidesPerView: 2,    
+       
+       
+          
+                                     
+       watchOverflow: true,
+       spaceBetween: 0, 
+       navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+       },
+       breakpoints: {
+       767: {
+       
+                  
+       slidesPerView: 1,
+       spaceBetween:20,
+       
+       
+        
+       }
+    }
+  }); 
+</script>
+
+ <script>
+    var videolist = $(".video-list").find("video.js-video");
+    var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端       
+    if (isAndroid) {
+     $('video.js-video').remove();
+    }
+    if (isIOS) {
+       document.addEventListener("WeixinJSBridgeReady", function () { 
+     $(document).ready(function(){
+     for(var k = 0 ;k<videolist.length;k++){
+      videolist[k].play();}
+      });
+    }, false); 
+     document.addEventListener('touchstart', function(){ 
+     for(var k = 0 ;k<videolist.length;k++){
+      videolist[k].play();}
+  }, false);
+    }           
+</script> <div id='tracecode'></div>
+  <div class="container-fluid new_footer" style="margin: 0;padding: 0;">
+<div class="row" style="margin: 0;padding: 0;">
+  <div class="col-md-12 copyright " >
+ <!--仅手机端显示-->     
+   <div class="mb_social div_wap" >                
+              
+    <a class="fontuetop icon-sina-weibo icon" href="https://weibo.com/"  target="_blank"></a>
+           
+             
+   <a id="show_weixin_mb" href="javascript:void(0);" class="fontuetop icon-wechat icon" title="微信客服"> </a>
+   
+              
+    <a  href="https://tmall.com/"  target="_blank" class="fontuetop icon-tmall icon " title="tmall"></a>
+   
+   
+   
+    <a  href="https://instagram.com/"  target="_blank" class="fontuetop icon-instagram_empty icon " title="instagram"></a>
+    
+    
+     
+           
+   </div>  
+    </div>
+   </div>
+</div> 
+
+<style>
+  
+.new_footer .copyright{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box; 
+font-family:Gill Sans,Gill Sans MT,Century Gothic,"华文细黑",STXiHei,"微软雅黑","Microsoft Yahei","华文黑体","ST Heiti","MS黑体","MS Hei",abchanel-couture,Arial,Helvetica,sans-serif;
+} 
+  
+.new_footer .copyright {
+ margin-bottom: 45px;
+ padding-right: 32px;
+}  
+  
+.indexcopyright{
+padding-left: 5px;
+}
+  
+.copyright{
+margin-top: 55px;
+}
+  
+  
+@media (min-width: 330px){
+		
+.indexcopyright{
+padding-left: 30px;
+}}
+
+  
+@media (min-width: 768px){
+		
+.indexcopyright{
+padding-left: 0px;
+}
+.copyright{
+margin-top: 95px;
+}
+}
+	
+	
+.copyright,.copyright a{
+font-size:11px;
+line-height:24px;
+text-align:right;
+}
+
+@media (max-width: 768px){
+.mb_social  a{
+ font-size:16px;
+  padding:0 14px;
+  color:#1a1a1a;
+}  
+  
+.mb_social  a.icon-sina-weibo.icon{
+  font-size:18px
+}  
+  
+  
+
+   
+.mb_social{
+border-top:1px solid #ddd;
+padding:20px 0;
+margin-bottom:0;
+}
+.copyright{
+line-height:20px;
+text-align:center;
+}
+
+.new_footer .copyright {
+padding: 0;
+}
+
+}
+	
+</style>   
+  <div class="wrapper wrapper-popup" id="yhsd-popup-wrap">
+  <div class="cont">
+    <div class="mod popup settings-body_background" id="yhsd-popup">
+      <div class="popup-cont" id="yhsd-popup-cont"></div>
+      <div class="popup-btn" id="yhsd-popup-btn"></div>
+      <a class="popup-close" id="yhsd-popupClose" href="javascript:void(0)"><span class="aIco aIco-close"></span></a>
+    </div>
+  	<div class="mask"></div>
+  </div>
+</div>
+  <div id="go_top" class="clearfix go_top go_top-style-1">
+   
+      <a id="show_weixin_kf2" class="pc_kf div_pc" ><span class="fx_icon fontuetop">&#xF1D7;</span></a>
+      
+       
+      <a class="pc_kf div_pc fontuetop" href="http://wpa.qq.com/msgrd?v=3&uin=  87878787&site=qq&amp;menu=yes" title="联系客服" target="_blank"><span class="fx_icon">&#xF1D6;</span></a>
+       
+  <a id="go_top-go" class="go_top-btn go_top-go fontuetop icon-backtop2 " href="javascript:void(0);"></a> 
+</div>
+<div id="mb_kf" class="mb_kf">   
+ <a class="fontuetop  div_wap icon-custom mb_kf_icon"  href="javascript:;" >
+</a>   
+</div>
+<!--手机端客服弹出-->
+<div class="mdui-dialog mbpro-sharebox div_wap" id="example-88">
+    <div class="share_box_wrap">
+    <div class="bdsharebuttonbox share_box_inner fontuetop">     
+      
+      <a id="show_weixin_kf" class="bds_weixin" ><span class="fx_icon">&#xF1D7;</span><span class="fx_text">微信客服</span></a>
+      
+       
+      <a href="http://wpa.qq.com/msgrd?v=3&uin=87878787&site=qq&amp;menu=yes" title="联系客服" target="_blank"><span class="fx_icon">&#xF1D6;</span><span class="fx_text">QQ客服</span></a>
+       
+      
+      <a href="tel://888888888" ><span class="fx_icon fontuetop">&#xe865;</span><span class="fx_text">拨打电话</span></a>
+      
+    </div>
+   </div>
+  <div class="mdui-dialog-actions mbpro_actions" >
+  <div class="mdui-btn-cancel" id="kf_close" >取消</div>
+  </div>
+</div>
+<div id="weixin_sercice2"  class="weixin_sercice weixin_sercice_kf">
+    <img src="//asset.ibanquan.com/s/66633/0/kf_wechat?v=1587615612_1587615612" alt="微信客服二维码">
+  <span>微信公众号：pkqpkpk</span> 
+ </div> 
+<div id="kf_mask" class="kf_mask" ></div>
+<div id="kf_mask2" class="kf_mask" ></div>
+<script>
+$(document).ready(function(){  
+    $("#go_top,#mb_kf").hide();  
+    $(function () {
+		var tmpwidth=$(window).width();  
+		if(tmpwidth<=768){
+			tmpbtm=16;
+			tmpsepbtm=65;
+		}else{
+			tmpbtm=32;
+			tmpsepbtm=140;
+		}
+
+        var height=$(window).height();  
+
+        $(window).scroll(function(){  
+            if ($(window).scrollTop()>height){  
+                $("#go_top").fadeIn(500);  
+            }else{  
+                $("#go_top").fadeOut(500);  
+            }
+			
+          if ($(window).scrollTop()>200){  
+                $("#mb_kf").fadeIn(500);  
+            }else{  
+                $("#mb_kf").fadeOut(500);  
+            }
+          
+			tmpbodyheight=$(document.body).height();
+			
+			if($(window).scrollTop()>tmpbodyheight-height-tmpsepbtm+tmpbtm){
+				tmph = tmpbodyheight - height - $(window).scrollTop();
+				tmph = tmpsepbtm - tmph;
+				$("#go_top").css("bottom",tmph + "px");
+			}else{
+				$("#go_top").css("bottom",tmpbtm + "px");
+			}
+			//alert("bodyheight:"+tmpbodyheight+";windowscrolltop:"+$(window).scrollTop());
+			
+        });
+		
+        $("#go_top-go").click(function(){  
+            $('body,html').animate({scrollTop:0},100);  
+            return false;  
+        });  
+    });  
+});
+
+</script>
+
+  <script>
+
+  $(document).ready(function(){
+    //关闭事件
+
+     var weixinOpen2 = function(){
+      $("#faq_mask").fadeIn();
+      $("#weixin_sercice2").fadeIn();
+    }
+    var weixinClose2 = function(){
+      $("#weixin_sercice2").fadeOut();
+      $("#faq_mask").fadeOut();
+    }
+     
+
+    
+    //客服按钮事件
+    
+     $("#show_weixin_kf").click(function(){
+      weixinOpen2();
+    });
+    $("#show_weixin_kf2").click(function(){
+      weixinOpen2();
+    });
+     $("#faq_mask").click(function(){
+      weixinClose2(); 
+    });
+  
+    });
+
+
+</script>
+
+
+  <div id="nav_height" style="display:none;"></div>
+  </div>
+    <script src="//asset.ibanquan.com/common/js/yhsd-desktop-2.4.0.min.js?v=306" crossorigin></script>
+   <script src="//asset.ibanquan.com/common/theme/base/0.2.0/js/base.js?v=306" crossorigin></script>
+    <script src='//asset.ibanquan.com/common/js/youpage.min.js?v=306' type='text/javascript'></script>
+    <script src='//asset.ibanquan.com/s/66633/0/main.js?v=1587615612_1587615612' type='text/javascript'></script>
+    <script src='//asset.ibanquan.com/s/66633/0/user.js?v=1587615612_1587615612' type='text/javascript'></script>
+    <script src='//asset.ibanquan.com/common/js/img_zoom.min.js?v=306' type='text/javascript'></script>
+    <script src="//asset.ibanquan.com/common/theme/base/0.2.0/js/plugins.js?v=306" async crossorigin></script>
+</body>
+</html>
